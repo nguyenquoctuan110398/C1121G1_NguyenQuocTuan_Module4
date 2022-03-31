@@ -15,7 +15,7 @@ public class SandwichController {
     }
 
     @RequestMapping("/save")
-    public String save(@RequestParam(value = "condiment", required = false, defaultValue = "Not valiable")
+    public String save(@RequestParam(value = "condiment", defaultValue = "Not valiable")
                                    String[] condiment, Model model) {
         model.addAttribute("condiment", condiment);
 
