@@ -15,7 +15,6 @@ public class Blog {
     private String date;
     private String content;
     private String summary;
-    private Integer countLike;
 
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
@@ -71,14 +70,6 @@ public class Blog {
 
     public void setSummary(String summary) {
         this.summary = summary;
-    }
-
-    public Integer getCountLike() {
-        return countLike;
-    }
-
-    public void setCountLike(Integer countLike) {
-        this.countLike = countLike;
     }
 
     public Category getCategory() {

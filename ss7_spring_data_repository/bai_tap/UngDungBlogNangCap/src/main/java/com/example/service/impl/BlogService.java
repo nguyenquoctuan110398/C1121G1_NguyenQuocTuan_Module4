@@ -16,7 +16,7 @@ public class BlogService implements IBlogService {
 
     @Override
     public Page<Blog> findAll(String author, Pageable pageable) {
-        return iBlogRepository.findAllByAuthorContaining(author, pageable);
+        return iBlogRepository.findAllByAuthorContainingOrderByDate(author, pageable);
     }
 
     @Override
@@ -30,18 +30,13 @@ public class BlogService implements IBlogService {
     }
 
     @Override
-    public void like(Blog blog) {
-       blog.setCountLike(blog.getCountLike()+1);
-    }
-
-    @Override
     public void delete(Integer id) {
         iBlogRepository.deleteById(id);
     }
 
     @Override
     public Page<Blog> findAllByCategory(Integer id, Pageable pageable) {
-        return iBlogRepository.findAllByCategoryId(id, pageable);
+        return iBlogRepository.findAllByCategoryIdOrderByDate(id, pageable);
     }
 
 //    @Override

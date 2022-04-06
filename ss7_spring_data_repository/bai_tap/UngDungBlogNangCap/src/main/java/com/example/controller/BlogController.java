@@ -53,7 +53,6 @@ public class BlogController {
 
     @PostMapping("/save")
     public String save(Blog blog) {
-        blog.setCountLike(0);
         iBlogService.save(blog);
         return "redirect:/blog";
     }
@@ -85,7 +84,6 @@ public class BlogController {
     @GetMapping(value = "/like")
     public String like(@RequestParam Integer id) {
         Blog blog = iBlogService.findById(id);
-        iBlogService.like(blog);
         iBlogService.save(blog);
         return "redirect:/blog";
     }
@@ -105,11 +103,4 @@ public class BlogController {
 
         return "listByCategory";
     }
-
-//    @GetMapping("/search")
-//    public String search(@RequestParam String author, Model model) {
-//        List<Blog> blogs = iBlogService.searchByNameAuthor(author);
-//        model.addAttribute("blogs", blogs);
-//        return "/list";
-//    }
 }

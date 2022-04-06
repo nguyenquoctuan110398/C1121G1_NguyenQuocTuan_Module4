@@ -12,8 +12,6 @@ public interface IBlogService {
 
     void save(Blog blog);
 
-    void like(Blog blog);
-
     void delete(Integer id);
 
     Page<Blog> findAllByCategory(Integer id, Pageable pageable);

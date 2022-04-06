@@ -28,8 +28,6 @@
         <label>Content: </label>
         <label th:text="${blog.content}" ></label>
         <br>
-        <p><span th:text="${blog.countLike}"></span> likes</p>
-        <a th:href="@{/blog/like(id=${blog.id})}"><button>Like</button></a>
     </div>
 </div>
 <footer th:replace="/layout :: footer"></footer>
