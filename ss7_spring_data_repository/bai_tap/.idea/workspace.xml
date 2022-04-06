@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9fb7d7a9-14ed-4696-980d-91f9e590f655" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../giai_thuat/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../giai_thuat/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../giai_thuat/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../giai_thuat/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../giai_thuat/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../giai_thuat/giai_thuat.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../giai_thuat/src/VeHinh.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/main/java/com/example/QuanLyKhachHangQuanLyTinhApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/main/java/com/example/controller/CustomerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/main/java/com/example/controller/ProvinceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/main/java/com/example/formatter/ProvinceFormatter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/main/java/com/example/model/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/main/java/com/example/model/Province.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/main/java/com/example/repository/ICustomerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/main/java/com/example/repository/IProvinceRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/main/java/com/example/service/IGeneralService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/main/java/com/example/service/customer/CustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/main/java/com/example/service/customer/ICustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/main/java/com/example/service/province/IProvinceService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/main/java/com/example/service/province/ProvinceService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/main/resources/templates/customer/create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/main/resources/templates/customer/delete.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/main/resources/templates/customer/edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/main/resources/templates/customer/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/main/resources/templates/province/create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/main/resources/templates/province/delete.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/main/resources/templates/province/edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/main/resources/templates/province/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/main/resources/templates/province/view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/QuanLyKhachHangQuanLyTinh/src/test/java/com/example/QuanLyKhachHangQuanLyTinhApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thuc_hanh/spring-customer-management" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ss1_tong_quan_spring_mvc/thuc_hanh/customer-management" beforeDir="false" afterPath="$PROJECT_DIR$/../../ss1_tong_quan_spring_mvc/thuc_hanh/customer-management" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ss2_spring_controller/thuc_hanh/customer-management" beforeDir="false" afterPath="$PROJECT_DIR$/../../ss2_spring_controller/thuc_hanh/customer-management" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ss5_thao_tac_voi_csdl_va_orm/thuc_hanh/customer-management" beforeDir="false" afterPath="$PROJECT_DIR$/../../ss5_thao_tac_voi_csdl_va_orm/thuc_hanh/customer-management" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="27PhLoc7pLG0WDwjWUZIpETWe6z" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/NangCapTrangBlog" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\File\Code Gym\module\module 4\ss7_spring_data_repository\bai_tap\src\main\java\com\example" />
+      <recent name="F:\File\Code Gym\module\module 4\ss7_spring_data_repository\bai_tap\src\main\resources\templates" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="UngDungBlogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="UngDungBlog.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.UngDungBlogApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9fb7d7a9-14ed-4696-980d-91f9e590f655" name="Changes" comment="" />
+      <created>1649227576348</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1649227576348</updated>
+      <workItem from="1649227577696" duration="11933000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
