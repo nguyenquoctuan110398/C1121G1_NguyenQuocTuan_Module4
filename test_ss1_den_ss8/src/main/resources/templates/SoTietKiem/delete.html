@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Xóa sổ tiết kiệm</h2>
+<p>
+    <a th:href="@{/so-tiet-kiem}">
+        Trở về danh sách sổ tiết kiệm
+    </a>
+</p>
+
+<div id="form">
+    <form th:action="@{/so-tiet-kiem/xoa}" th:object="${soTietKiem}" method="post">
+
+        <label>Mã sổ tiết kiệm: </label>
+        <input readonly type="text" th:field="*{maSoTietKiem}">
+
+        <label>Mã khách hàng: </label>
+        <input readonly type="text" th:field="*{khachHang.maKhachHang}">
+
+        <label>Tên khách hàng:</label>
+        <input readonly type="text" th:field="*{khachHang.tenKhachHang}">
+
+        <label>Thời gian gửi: </label>
+        <input readonly type="text" th:field="*{thoiGianGui}">
+
+        <label>Kỳ hạn: </label>
+        <input readonly type="text" th:field="*{kyHan}">
+
+        <label>Số tiền gửi: </label>
+        <input readonly type="text" th:field="*{soTienGui}">
+
+        <input type="submit" value="Xóa sổ tiết kiệm">
+
+    </form>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

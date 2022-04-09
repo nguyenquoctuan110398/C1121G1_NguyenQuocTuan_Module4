@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/layout :: head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Sổ tiết kiệm</h3>
+<h4>
+    <a th:href="@{/so-tiet-kiem/them}">
+        Thêm mới sổ tiết kiệm
+    </a>
+</h4>
+
+<!--<table>-->
+
+    <form action="/so-tiet-kiem">
+        <tr>
+            <td><input type="text" name="tenKhachHang" placeholder="Tìm kiếm theo tên khách hàng"></td>
+            <td><input type="submit" value="Tìm kiếm"></td>
+        </tr>
+    </form>
+
+
+    <!--    <tr>-->
+    <!--        <td>-->
+    <!--            <a th:href="@{/blog}"><input type="submit" value="Reset"></a>-->
+    <!--        </td>-->
+    <!--    </tr>-->
+<!--</table>-->
+
+<!--<div class="notify">-->
+<!--    <div th:if="${success}">-->
+<!--        <span th:text="${success}"></span>-->
+<!--    </div>-->
+<!--</div>-->
+<table id="soTietKiems">
+    <thead>
+    <tr>
+        <th>Mã sổ</th>
+        <th>Thời gian gửi</th>
+        <th>Kỳ hạn</th>
+        <th>Số tiền gửi</th>
+        <th>Tên khách hàng</th>
+        <th>Sửa</th>
+        <th>Xóa</th>
+        <th>Thông tin</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="soTietKiem : ${soTietKiems}">
+        <td th:text="${soTietKiem.maSoTietKiem}"></td>
+
+        <td th:text="${soTietKiem.thoiGianGui}"></td>
+
+        <td th:text="${soTietKiem.kyHan}"></td>
+
+        <td th:text="${soTietKiem.soTienGui}"></td>
+
+        <td th:text="${soTietKiem.khachHang.tenKhachHang}"></td>
+
+        <td><a th:href="@{/so-tiet-kiem/sua/{maSoTietKiem}(maSoTietKiem=${soTietKiem.maSoTietKiem})}">Edit</a></td>
+        <td><a th:href="@{/so-tiet-kiem/xoa/{maSoTietKiem}(maSoTietKiem=${soTietKiem.maSoTietKiem})}">Delete</a></td>
+        <td><a th:href="@{/so-tiet-kiem/xem/{maSoTietKiem}(maSoTietKiem=${soTietKiem.maSoTietKiem})}">View</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<!--<div>-->
+<!--    <a th:href="@{/blog(page=${blogs.number - 1}, author=${searchAuthor})}" th:if="${blogs.hasPrevious()}">Previous</a>-->
+<!--    <span th:text="${blogs.number + 1}"></span>/<span th:text="${blogs.totalPages}"></span>-->
+<!--    <a th:href="@{/blog(page=${blogs.number + 1}, author=${searchAuthor})}" th:if="${blogs.hasNext()}">Next</a>-->
+<!--</div>-->
+
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

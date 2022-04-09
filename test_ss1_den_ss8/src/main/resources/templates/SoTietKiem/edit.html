@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Sửa thông tin sổ tiết kiệm</h3>
+<p>
+    <a th:href="@{/so-tiet-kiem}">
+        Quay lại danh sách sổ tiết kiệm
+    </a>
+</p>
+
+<div id="form">
+
+    <form th:action="@{/so-tiet-kiem/sua}" th:object="${soTietKiemDto}" method="post" novalidate="novalidate">
+        <label>Mã sổ tiết kiệm: </label>
+        <input readonly type="text" th:field="*{maSoTietKiem}">
+
+        <label>Tên khách hàng:</label>
+        <input readonly type="text" th:field="*{khachHangDto.tenKhachHang}">
+
+        <label>Thời gian gửi: </label>
+        <input type="date" th:field="*{thoiGianGui}">
+        <div style="color: red" th:errors="*{thoiGianGui}"></div>
+
+        <label>Kỳ hạn: </label>
+        <input type="text" th:field="*{kyHan}">
+        <div style="color: red" th:errors="*{kyHan}"></div>
+
+        <label>Số tiền gửi: </label>
+        <input type="text" th:field="*{soTienGui}">
+        <div style="color: red" th:errors="*{soTienGui}"></div>
+
+        <input type="submit" value="Sửa thông tin">
+    </form>
+
+</div>
+
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
