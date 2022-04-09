@@ -15,7 +15,7 @@ public class SoTietKiem {
     private Integer kyHan;
     private Double soTienGui;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "khach_hang_id", referencedColumnName = "id")
     private KhachHang khachHang;
 

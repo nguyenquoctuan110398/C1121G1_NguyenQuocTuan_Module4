@@ -18,6 +18,10 @@
         <label>Mã sổ tiết kiệm: </label>
         <input readonly type="text" th:field="*{maSoTietKiem}">
 
+        <input type="hidden" th:field="*{khachHangDto.id}">
+
+        <input type="hidden" th:field="*{khachHangDto.maKhachHang}">
+
         <label>Tên khách hàng:</label>
         <input readonly type="text" th:field="*{khachHangDto.tenKhachHang}">
 

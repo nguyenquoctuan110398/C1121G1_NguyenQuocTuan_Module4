@@ -68,6 +68,7 @@ public class SoTietKiemController {
             khachHang.setId(soTietKiemDto.getKhachHangDto().getId());
             khachHang.setMaKhachHang(soTietKiemDto.getKhachHangDto().getMaKhachHang());
             khachHang.setTenKhachHang(soTietKiemDto.getKhachHangDto().getTenKhachHang());
+            soTietKiem.setKhachHang(khachHang);
         }
 
         redirectAttributes.addFlashAttribute("message", "Thêm mới sổ tiết kiệm thành công");
@@ -113,6 +114,8 @@ public class SoTietKiemController {
         khachHang.setId(soTietKiemDto.getKhachHangDto().getId());
         khachHang.setMaKhachHang(soTietKiemDto.getKhachHangDto().getMaKhachHang());
         khachHang.setTenKhachHang(soTietKiemDto.getKhachHangDto().getTenKhachHang());
+
+        soTietKiem.setKhachHang(khachHang);
 
         redirectAttributes.addFlashAttribute("message", "Sửa thông tin sổ thành công");
         iSoTietKiemService.save(soTietKiem);
