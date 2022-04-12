@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Create borrowing card</h3>
+<p>
+    <a th:href="@{/borrowing-card}">
+        Back to list borrowing card
+    </a>
+</p>
+
+<div id="form">
+
+    <form th:action="@{/borrowing-card/save}" th:object="${borrowingCardDto}" method="post" novalidate="novalidate">
+        <label>Borrowing id: </label>
+        <input readonly type="text" th:field="*{id}">
+
+        <label>Book name: </label>
+        <input readonly type="text" th:field="*{bookDto.name}">
+
+        <input readonly type="text" th:field="*{bookDto.id}" name="bookId">
+
+        <label>Borrowed date: </label>
+        <input type="date" th:field="*{startDay}">
+        <div style="color: red" th:errors="*{startDay}"></div>
+
+        <label>Pay day: </label>
+        <input type="date" th:field="*{endDay}">
+        <div style="color: red" th:errors="*{endDay}"></div>
+
+        <input type="submit" value="Create">
+    </form>
+
+</div>
+
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

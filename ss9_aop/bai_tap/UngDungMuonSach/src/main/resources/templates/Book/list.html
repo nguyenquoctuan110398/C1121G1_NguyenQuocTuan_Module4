@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/layout :: head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Books</h3>
+<h4><a th:href="@{/borrowing-card}">
+    Go to borrowing card list page
+</a></h4>
+
+<!--<h4>-->
+<!--    <a th:href="@{/book/create}">-->
+<!--        Add new book-->
+<!--    </a>-->
+<!--</h4>-->
+
+<h4>
+    <a th:href="@{/book/return-book}">
+        Return book
+    </a>
+</h4>
+
+<div class="notify">
+    <div th:if="${success}" style="color: forestgreen">
+        <h3 th:text="${success}"></h3>
+    </div>
+</div>
+
+<table id="books">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Quantity</th>
+        <th>Borrow books</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="book : ${books}">
+        <td th:text="${book.id}"></td>
+
+        <td th:text="${book.name}"></td>
+
+        <td th:text="${book.author}"></td>
+
+        <td th:text="${book.quantity}"></td>
+
+        <td><a th:href="@{/borrowing-card/borrow/{id}(id=${book.id})}">Borrow</a></td>
+    </tr>
+    </tbody>
+</table>
+
+
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

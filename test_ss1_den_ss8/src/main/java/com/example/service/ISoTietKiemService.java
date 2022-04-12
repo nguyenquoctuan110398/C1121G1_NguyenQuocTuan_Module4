@@ -13,4 +13,10 @@ public interface ISoTietKiemService {
     SoTietKiem findById(Integer maSoTietKiem);
 
     void delete(Integer maSoTietKiem);
+
+    List<SoTietKiem> searchByAll(String ngayBatDau, String ngayKetThuc, String tenKhachHangCanTim);
+
+    List<SoTietKiem> searchByDayStartAndDayEnd(String ngayBatDau, String ngayKetThuc);
+
+    List<SoTietKiem> searchByName(String tenKhachHangCanTim);
 }

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RequestMapping("/so-tiet-kiem")
 @Controller
@@ -110,7 +111,7 @@ public class SoTietKiemController {
 
         BeanUtils.copyProperties(soTietKiemDto, soTietKiem);
 
-        KhachHang khachHang  = new KhachHang();
+        KhachHang khachHang = new KhachHang();
         khachHang.setId(soTietKiemDto.getKhachHangDto().getId());
         khachHang.setMaKhachHang(soTietKiemDto.getKhachHangDto().getMaKhachHang());
         khachHang.setTenKhachHang(soTietKiemDto.getKhachHangDto().getTenKhachHang());
@@ -132,6 +133,48 @@ public class SoTietKiemController {
     @PostMapping("/xoa")
     public String delete(SoTietKiem soTietKiem) {
         iSoTietKiemService.delete(soTietKiem.getMaSoTietKiem());
+        return "redirect:/so-tiet-kiem";
+    }
+
+    @GetMapping("/tim-kiem")
+    public String search(@RequestParam Optional<String> ngayBatDau,
+                         @RequestParam Optional<String> ngayKetThuc,
+                         @RequestParam Optional<String> tenKhachHangCanTim,
+                         Model model) {
+        List<SoTietKiem> soTietKiems = null;
+
+        if ((!ngayBatDau.isPresent() || ngayBatDau.get().equals(""))
+                && (!ngayKetThuc.isPresent() || ngayKetThuc.get().equals(""))){
+            if (tenKhachHangCanTim.isPresent() && !(tenKhachHangCanTim.get().equals(""))){
+                soTietKiems = iSoTietKiemService.searchByName(tenKhachHangCanTim.get());
+                model.addAttribute("tenKhachHangCanTim", tenKhachHangCanTim);
+                model.addAttribute("soTietKiems", soTietKiems);
+                return "/SoTietKiem/list";
+            } else {
+                return "redirect:/so-tiet-kiem";
+            }
+        }
+
+        if (ngayBatDau.isPresent() && !(ngayBatDau.get().equals(""))
+                && ngayKetThuc.isPresent() && !(ngayKetThuc.get().equals(""))){
+            if (tenKhachHangCanTim.isPresent()){
+                soTietKiems = iSoTietKiemService.searchByAll(ngayBatDau.get(),
+                        ngayKetThuc.get(), tenKhachHangCanTim.get());
+
+                model.addAttribute("ngayBatDau", ngayBatDau);
+                model.addAttribute("ngayKetThuc", ngayKetThuc);
+                model.addAttribute("tenKhachHangCanTim", tenKhachHangCanTim);
+
+                return "/SoTietKiem/list";
+            } else {
+                soTietKiems = iSoTietKiemService.searchByDayStartAndDayEnd(ngayBatDau.get(), ngayKetThuc.get());
+
+                model.addAttribute("ngayBatDau", ngayBatDau);
+                model.addAttribute("ngayKetThuc", ngayKetThuc);
+
+                return "/SoTietKiem/list";
+            }
+        }
         return "redirect:/so-tiet-kiem";
     }
 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/layout :: head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Borrowing books</h3>
+
+<h4><a th:href="@{/book}">Go to book list page</a></h4>
+
+<div class="notify">
+    <div th:if="${success}" style="color: forestgreen">
+        <h3 th:text="${success}"></h3>
+    </div>
+</div>
+
+<table id="borrowingCards">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Borrowed date</th>
+        <th>Pay day</th>
+        <th>Book name</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="borrowingCard : ${borrowingCards}">
+        <td th:text="${borrowingCard.id}"></td>
+
+        <td th:text="${borrowingCard.startDay}"></td>
+
+        <td th:text="${borrowingCard.endDay}"></td>
+
+        <td th:text="${borrowingCard.book.name}"></td>
+
+    </tr>
+    </tbody>
+</table>
+
+
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

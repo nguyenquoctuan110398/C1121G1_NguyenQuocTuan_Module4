@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/layout :: head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="form">
+<form th:action="@{/book/return-book}" method="post" novalidate="novalidate">
+    <label>Enter borrowing card id: </label>
+    <input type="text" name="id">
+    <input type="submit" value="Return book">
+</form>
+</div>
+
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
