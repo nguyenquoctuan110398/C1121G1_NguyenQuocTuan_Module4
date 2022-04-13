@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/layout :: head}">
+    <meta charset="UTF-8">
+    <title>Shopping Cart</title>
+</head>
+<body>
+
+<!-- Sidebar (hidden by default) -->
+<nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left"
+     style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+    <a href="javascript:void(0)" onclick="w3_close()"
+       class="w3-bar-item w3-button">Close Menu</a>
+    <a href="/shop" onclick="w3_close()" class="w3-bar-item w3-button">Your Shop</a>
+</nav>
+
+<!-- Top menu -->
+<div class="w3-top" style="background:blue;">
+    <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+        <div class="w3-button w3-padding-16 w3-left" style="background:blue;" onclick="w3_open()">☰</div>
+    </div>
+</div>
+
+<h1>Your Cart</h1>
+<form th:action="@{/shop}" th:object="${cart}" method="post">
+    <h3>Total Items: <span th:text="${cart.countItemQuantity()}"></span></h3>
+    <h3>Total Products: <span th:text="${cart.countProductQuantity()}"></span></h3>
+    <table border="1" id="sanPhams">
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+
+        <tr th:each="product: ${cart.products}">
+            <td th:text="${product.getKey().name}"></td>
+            <td>
+                <a th:if="${product.value>0}" id="decrease_button"
+                   th:href="@{/sub/__${product.getKey().id}__(action='show')}"
+                   th:text="${'-'}"></a>
+                <span th:text="${product.getValue()}"></span>
+                <a id="increase_button" th:href="@{/add/__${product.getKey().id}__(action='show')}"
+                   th:text="${'+'}"></a>
+            </td>
+            <td th:text="${product.getKey().price}"></td>
+        </tr>
+
+        <tr>
+            <td>Total</td>
+            <td></td>
+            <td th:text="${cart.countTotalPayment()}"></td>
+        </tr>
+    </table>
+</form>
+</body>
+<script>
+    // Script to open and close sidebar
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+    }
+
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
+</script>
+</html>

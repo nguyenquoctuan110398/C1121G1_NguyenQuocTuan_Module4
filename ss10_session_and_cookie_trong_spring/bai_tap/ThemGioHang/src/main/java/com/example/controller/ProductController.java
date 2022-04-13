@@ -25,7 +25,7 @@ public class ProductController {
 
     @GetMapping("/shop")
     public ModelAndView showShop(){
-        ModelAndView modelAndView = new ModelAndView("shop1111");
+        ModelAndView modelAndView = new ModelAndView("shop");
         modelAndView.addObject("products", iProductService.findAll());
         return modelAndView;
     }

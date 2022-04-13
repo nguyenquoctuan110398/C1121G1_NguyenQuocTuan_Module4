@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+
+
+<!--    <title>Spring Blog</title>-->
+
+    <style type="text/css">
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: "Karma", sans-serif
+        }
+
+        .w3-bar-block .w3-bar-item {
+            padding: 20px
+        }
+
+        #cusdetail {
+            font-size: 200%;
+        }
+
+        h3 {
+            background-color: blue;
+            color: white;
+            padding: 10px 0 10px 20px;
+        }
+
+        footer {
+            margin: 10px 0;
+        }
+
+        #sanPhams, #soTietKiems {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #sanPhams td, #sanPhams th, #soTietKiems td, #soTietKiems th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #sanPhams tr:nth-child(even), #soTietKiems tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #sanPhams tr:hover, #soTietKiems tr:hover {
+            background-color: #ddd;
+        }
+
+        #sanPhams th, #soTietKiems th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        input[type=text], input[type=email], input[type=date], select, textarea {
+            width: 100%;
+            padding: 12px 0px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            width: 300px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        #form {
+            width: 500px;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .notify span {
+            font-size: 15px;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+
+<footer th:fragment="footer">
+    &copy; 2021 CodeGym
+</footer>
+</body>
+</html>

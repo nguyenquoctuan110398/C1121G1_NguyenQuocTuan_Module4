@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Shop</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+    <style>
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: "Karma", sans-serif
+        }
+
+        .w3-bar-block .w3-bar-item {
+            padding: 20px
+        }
+    </style>
+</head>
+<body>
+
+<nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left"
+     style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+    <a href="javascript:void(0)" onclick="w3_close()"
+       class="w3-bar-item w3-button">Close Menu</a>
+    <a href="/shopping-cart" onclick="w3_close()" class="w3-bar-item w3-button">Your Cart</a>
+</nav>
+
+<div class="w3-top" style="background:blue;">
+    <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+        <div class="w3-button w3-padding-16 w3-left" style="background:blue;" onclick="w3_open()">☰</div>
+    </div>
+</div>
+
+<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+
+    <div class="row">
+        <div class="col-3" id="food" th:each="product:${products}">
+            <div class="w3-quarter" style="text-align: center">
+                <img th:src="@{${product.img}}" alt="Sandwich" width="300" height="400">
+                <h3>
+                    <a class="text-center text-decoration-none" th:href="@{/view/__${product.id}__}"
+                       th:text="${product.name}"></a>
+                </h3>
+                <div>
+                    <p class="text-center" th:text="${'Price: ' + product.price}"></p>
+                </div>
+                <div class="text-center">
+                    <a class="btn btn-danger" th:href="@{/add/__${product.id}__(action='list')}">Add Your Cart</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+    }
+
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
