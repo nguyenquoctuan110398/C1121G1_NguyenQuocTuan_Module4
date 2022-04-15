@@ -12,8 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +20,7 @@ import java.util.Optional;
 
 @RequestMapping("/blogRest")
 @RestController
+@CrossOrigin
 public class BlogRestController {
 
     @Autowired
@@ -38,7 +37,7 @@ public class BlogRestController {
     @GetMapping("")
     public ResponseEntity<Page<Blog>> showListBlogRest
             (@RequestParam("author") Optional<String> search,
-             @PageableDefault(value = 2) Pageable pageable) {
+             @PageableDefault Pageable pageable) {
 
         String searchAuthor = search.orElse("");
 

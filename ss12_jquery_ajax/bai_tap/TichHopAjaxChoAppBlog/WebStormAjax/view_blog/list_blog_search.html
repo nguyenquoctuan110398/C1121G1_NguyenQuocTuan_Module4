@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List blog</title>
+    <link rel="stylesheet" href="../css/mdb.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<!--<div class="container mt-4">-->
+
+<!--    <div class="row w-50 mx-auto">-->
+<!--        <div class="col-lg-10">-->
+<!--            <input class="form-control" type="text" id="author">-->
+<!--        </div>-->
+
+<!--        <div class="col-lg-2">-->
+<!--            <button class="btn btn-primary" id="btnSearch">Search</button>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="row w-50 mx-auto">-->
+<!--        <div class="col-lg-12">-->
+<!--            <h2>List blog</h2>-->
+<!--            <table class="table table-striped">-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th scope="col">Id</th>-->
+<!--                    <th scope="col">Author</th>-->
+<!--                    <th scope="col">Image</th>-->
+<!--                    <th scope="col">Date</th>-->
+<!--                    <th scope="col">Content</th>-->
+<!--                    <th scope="col">Summary</th>-->
+<!--                    <th scope="col">Category name</th>-->
+<!--                    <th scope="col"></th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+
+<!--                <tbody id="bodyBlog">-->
+
+<!--                </tbody>-->
+
+<!--            </table>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--</div>-->
+
+<!--</body>-->
+
+<table>
+    <tr>
+        <td><input type="text" name="author" id="author" placeholder="search by author"></td>
+        <td><input type="submit" value="Search" id="btnSearch"></td>
+    </tr>
+
+
+    <!--    <tr>-->
+    <!--        <td>-->
+    <!--            <a th:href="@{/blog}"><input type="submit" value="Reset"></a>-->
+    <!--        </td>-->
+    <!--    </tr>-->
+</table>
+
+<table id="blogs">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Image</th>
+        <th>Author</th>
+        <th>Category</th>
+        <th>Date</th>
+        <th>Summary</th>
+    </tr>
+    </thead>
+    <tbody id="bodyBlog">
+
+    </tbody>
+</table>
+
+<button id="loadMoreButton">Load more</button>
+
+</body>
+
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script src="../js/mdb.min.js"></script>
+
+<script>
+    $("#btnSearch").click(function () {
+
+        let authorVal = $("#author").val();
+        let countLoad = 1;
+
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "GET", //GET, DELETE, PUT...
+            url: "http://localhost:8080/blogRest?author=" + authorVal,
+            success: function (resultSuccess) {
+
+                let blogRestList = resultSuccess.content;
+                let outHTML = "";
+
+                console.log(blogRestList.length);
+
+                for (let i = 0; i < blogRestList.length; i++) {
+                    outHTML += `
+                    <tr>
+                        <td>${blogRestList[i].id}</td>
+                        <td><img src="${blogRestList[i].image}" style="width: 100px; height: 100px"></td>
+                        <td>${blogRestList[i].author}</td>
+                        <td>${blogRestList[i].category.name}</td>
+                        <td>${blogRestList[i].date}</td>
+                        <td>${blogRestList[i].summary}</td>
+                    </tr>
+                    `;
+                }
+
+                // outHTML += "<tr><td>" + (i + 1) + "</td><td></td>"
+                console.log(outHTML);
+                $("#bodyBlog").html(outHTML);
+            },
+            error: function (resultError) {
+                alert("He thong dang bao tri");
+            }
+        });
+    })
+
+    let countLoad = 1;
+    let outHTML = "";
+    let count = 0;
+
+    $("#loadMoreButton").click(function () {
+
+        let authorVal = $("#author").val();
+
+
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "GET", //GET, DELETE, PUT...
+            url: "http://localhost:8080/blogRest?author=" + authorVal,
+            success: function (resultSuccess) {
+
+                let blogRestList = resultSuccess.content;
+
+                for (let i = count; i < (countLoad * 2) && i < blogRestList.length; i++) {
+                    outHTML += `
+                    <tr>
+                        <td>${blogRestList[i].id}</td>
+                        <td><img src="${blogRestList[i].image}" style="width: 100px; height: 100px"></td>
+                        <td>${blogRestList[i].author}</td>
+                        <td>${blogRestList[i].category.name}</td>
+                        <td>${blogRestList[i].date}</td>
+                        <td>${blogRestList[i].summary}</td>
+                    </tr>
+                    `
+                }
+                count = countLoad*2;
+                countLoad++;
+
+                // outHTML += "<tr><td>" + (i + 1) + "</td><td></td>"
+                console.log(outHTML);
+                $("#bodyBlog").html(outHTML);
+            },
+            error: function (resultError) {
+                alert("He thong dang bao tri");
+            }
+        });
+
+    })
+</script>
+
+</html>
