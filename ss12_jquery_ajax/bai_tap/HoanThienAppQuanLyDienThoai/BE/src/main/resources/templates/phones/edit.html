@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Edit Smartphone</title>
+
+    <style type="text/css">
+        #cusdetail {
+            font-size: 200%;
+        }
+
+        h3 {
+            background-color: blue;
+            color: white;
+            padding: 10px 0 10px 20px;
+        }
+
+        footer {
+            margin: 10px 0;
+        }
+
+        #smartphones {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #smartphones td, #smartphones th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #smartphones tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #smartphones tr:hover {
+            background-color: #ddd;
+        }
+
+        #smartphones th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        input[type=text], input[type=email], input[type=date], select, textarea {
+            width: 100%;
+            padding: 12px 0px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            width: 300px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        #form {
+            width: 500px;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .notify span {
+            font-size: 15px;
+            color: blue;
+        }
+    </style>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div id="form">
+    <label>ID: </label>
+    <input readonly type="text" th:value="${smartphone.id}" id="idEdit">
+
+    <label>Producer: </label>
+    <input type="text" th:value="${smartphone.producer}" id="producerEdit">
+
+    <label>Model: </label>
+    <input type="text" th:value="${smartphone.model}" id="modelEdit">
+
+    <label>Price: </label>
+    <input type="text" th:value="${smartphone.price}" id="priceEdit">
+
+    <input type="submit" id="edit" value="Update">
+</div>
+
+</body>
+<script>
+    $("#edit").click(function () {
+        let idVal = $("#idEdit").val();
+        let producerVal = $("#producerEdit").val();
+        let modelVal = $("#modelEdit").val();
+        let priceVal = $("#priceEdit").val();
+
+        let smartphoneUpdate = {
+            id: idVal,
+            producer: producerVal,
+            model: modelVal,
+            price: priceVal
+        }
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "PATCH",
+            url: "/smartphones/" + idVal,
+            data: JSON.stringify(smartphoneUpdate),
+            success: function (resultSuccess) {
+                alert("Dang ky thanh cong!");
+            },
+            error: function (resultError) {
+                alert("Dang ky that bai!")
+            }
+        });
+    });
+</script>
+</html>
+
+
+<!--<div id="form">-->
+<!--    <label>ID: </label>-->
+<!--    <input readonly type="text" th:value="${smartphone.id}" id="idEdit">-->
+
+<!--    <label>Producer: </label>-->
+<!--    <input type="text" th:value="${smartphone.producer}" id="producerEdit">-->
+
+<!--    <label>Model: </label>-->
+<!--    <input type="text" th:value="${smartphone.model}" id="modelEdit">-->
+
+<!--    <label>Price: </label>-->
+<!--    <input type="text" th:value="${smartphone.price}" id="priceEdit">-->
+
+<!--    <button id="update">Update</button>-->
+<!--</div>-->
+
