@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/layout :: head}">
+</head>
+<body>
+
+<div th:insert="~{/layout :: div}"></div>
+
+<h3>Blogs</h3>
+<h4>
+    <a th:href="@{/blog/create}">
+        Add new blog
+    </a>
+</h4>
+
+<table>
+
+    <form action="/blog">
+        <tr>
+            <td><input type="text" name="author" placeholder="search by author"></td>
+            <td><input type="submit" value="Search"></td>
+        </tr>
+    </form>
+
+
+<!--    <tr>-->
+<!--        <td>-->
+<!--            <a th:href="@{/blog}"><input type="submit" value="Reset"></a>-->
+<!--        </td>-->
+<!--    </tr>-->
+</table>
+
+<div class="notify">
+    <div th:if="${success}">
+        <span th:text="${success}"></span>
+    </div>
+</div>
+<table id="blogs">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Image</th>
+        <th>Author</th>
+        <th>Category</th>
+        <th>Date</th>
+        <th>Summary</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="blog : ${blogs}">
+        <td th:text="${blog.id}"></td>
+
+        <td><img th:src="${blog.image}" width="100px" height="100px"></td>
+
+        <td th:text="${blog.author}"></td>
+
+        <td><a th:text="${blog.category.name}" th:href="@{/blog/listByCategory/{id}(id=${blog.category.id})} "></a></td>
+
+        <td th:text="${blog.date}"></td>
+
+        <td th:text="${blog.summary}"></td>
+
+        <td><a th:href="@{/blog/edit/{id}(id=${blog.id})}">Edit</a></td>
+        <td><a th:href="@{/blog/delete/{id}(id=${blog.id})}">Delete</a></td>
+        <td><a th:href="@{/blog/view/{id}(id=${blog.id})}">View</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<div>
+    <a th:href="@{/blog(page=${blogs.number - 1}, author=${searchAuthor})}" th:if="${blogs.hasPrevious()}">Previous</a>
+    <span th:text="${blogs.number + 1}"></span>/<span th:text="${blogs.totalPages}"></span>
+    <a th:href="@{/blog(page=${blogs.number + 1}, author=${searchAuthor})}" th:if="${blogs.hasNext()}">Next</a>
+</div>
+
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
