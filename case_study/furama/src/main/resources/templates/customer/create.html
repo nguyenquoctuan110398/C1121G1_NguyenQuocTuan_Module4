@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="background-attachment: fixed; background-position: center bottom;
+      background-repeat: no-repeat;background-size: cover;
+      background-image: url('https://bigdata-vn.com/wp-content/uploads/2021/09/Background-anh-sang-dep.jpg');
+      object-fit: cover;">
+<h3>Add Customer</h3>
+<p style="text-align: center;">
+    <a th:href="@{/customers/list}" style="color: white">
+        Back to list customer
+    </a>
+</p>
+<div class="container" style="text-align: center">
+    <div id="form" style="display: inline-block; text-align: left">
+
+        <form th:action="@{/customers/save}" th:object="${customerDto}" method="post">
+
+            <label for="code">Code: </label>
+            <input type="text" id="code" th:field="*{customerCode}">
+            <div class="error" th:errors="*{customerCode}"></div>
+
+            <label for="name">Name: </label>
+            <input type="text" id="name" th:field="*{customerName}">
+            <div class="error" th:errors="*{customerName}"></div>
+
+            <label for="birthday">Birthday: </label>
+            <input type="date" id="birthday" th:field="*{customerBirthday}">
+            <div class="error" th:errors="*{customerBirthday}"></div>
+
+            <label for="gender">Gender</label>
+            <select id="gender" th:field="*{customerGender}">
+                <option th:value="0">Nữ</option>
+                <option th:value="1">Nam</option>
+            </select>
+
+            <label for="idCard">Id card: </label>
+            <input type="text" id="idCard" th:field="*{customerIdCard}">
+            <div class="error" th:errors="*{customerIdCard}"></div>
+
+            <label for="phone">Phone: </label>
+            <input type="text" id="phone" th:field="*{customerPhone}">
+            <div class="error" th:errors="*{customerPhone}"></div>
+
+            <label for="email">Email: </label>
+            <input type="text" id="email" th:field="*{customerEmail}">
+            <div class="error" th:errors="*{customerEmail}"></div>
+
+            <label for="address">Address: </label>
+            <input type="text" id="address" th:field="*{customerAddress}">
+            <div class="error" th:errors="*{customerAddress}"></div>
+
+            <label for="customerType">Customer type: </label>
+            <select id="customerType" th:field="*{customerType}">
+                <option th:each="customerType : ${customerTypes}"
+                        th:value="${customerType.customerTypeId}"
+                        th:text="${customerType.customerTypeName}">
+                </option>
+            </select>
+
+            <div style="text-align: center">
+                <input type="submit" value="Create">
+            </div>
+        </form>
+
+    </div>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

@@ -17,7 +17,7 @@ public class MainController {
     public String welcomePage(Model model) {
         model.addAttribute("title", "Welcome");
         model.addAttribute("message", "This is welcome page!");
-        return "welcomPage";
+        return "welcomePage";
     }
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
