@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="/layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="background-attachment: fixed; background-position: center bottom;
+      background-repeat: no-repeat;background-size: cover;
+      background-image: url('https://bigdata-vn.com/wp-content/uploads/2021/09/Background-anh-sang-dep.jpg');
+      object-fit: cover;">
+<nav th:insert="~{/layout :: nav}"></nav>
+<h3>Edit Customer</h3>
+<p style="text-align: center;">
+    <a th:href="@{/employees/list}" style="color: white">
+        Back to list employee
+    </a>
+</p>
+<div class="container" style="text-align: center">
+    <div id="form" style="display: inline-block; text-align: left">
+
+        <form th:action="@{/employees/update}" th:object="${employeeDto}" method="post">
+
+            <input type="hidden" th:field="*{employeeId}">
+
+            <label for="name">Name: </label>
+            <input type="text" id="name" th:field="*{employeeName}">
+            <div class="error" th:errors="*{employeeName}"></div>
+
+            <label for="birthday">Birthday: </label>
+            <input type="date" id="birthday" th:field="*{employeeBirthday}">
+
+            <label for="idCard">Id card: </label>
+            <input type="text" id="idCard" th:field="*{employeeIdCard}">
+            <div class="error" th:errors="*{employeeIdCard}"></div>
+
+            <label for="salary">Salary: </label>
+            <input type="text" id="salary" th:field="*{employeeSalary}">
+
+            <label for="phone">Phone: </label>
+            <input type="text" id="phone" th:field="*{employeePhone}">
+            <div class="error" th:errors="*{employeePhone}"></div>
+
+            <label for="email">Email: </label>
+            <input type="text" id="email" th:field="*{employeeEmail}">
+            <div class="error" th:errors="*{employeeEmail}"></div>
+
+            <label for="address">Address: </label>
+            <input type="text" id="address" th:field="*{employeeAddress}">
+
+            <input type="hidden" th:field="*{deleteFlag}">
+
+            <label for="position">Position: </label>
+            <select id="position" th:field="*{position}">
+                <option th:each="position : ${positions}"
+                        th:value="${position.positionId}"
+                        th:text="${position.positionName}">
+                </option>
+            </select>
+
+            <label for="educationDegree">Education degree: </label>
+            <select id="educationDegree" th:field="*{educationDegree}">
+                <option th:each="educationDegree : ${educationDegrees}"
+                        th:value="${educationDegree.educationDegreeId}"
+                        th:text="${educationDegree.educationDegreeName}">
+                </option>
+            </select>
+
+            <label for="division">Division: </label>
+            <select id="division" th:field="*{division}">
+                <option th:each="division : ${divisions}"
+                        th:value="${division.divisionId}"
+                        th:text="${division.divisionName}">
+                </option>
+            </select>
+
+            <div style="text-align: center">
+                <input type="submit" value="Update">
+            </div>
+        </form>
+
+    </div>
+</div>
+<footer th:insert="/layout :: footer"></footer>
+</body>
+</html>

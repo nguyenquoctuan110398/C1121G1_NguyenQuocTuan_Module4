@@ -18,6 +18,7 @@ public class Customer {
     private String customerPhone;
     private String customerEmail;
     private String customerAddress;
+    private Boolean deleteFlag;
 
     @ManyToOne
     @JoinColumn(name = "customer_type_id", referencedColumnName = "customerTypeId")
@@ -96,6 +97,14 @@ public class Customer {
 
     public void setCustomerAddress(String customerAddress) {
         this.customerAddress = customerAddress;
+    }
+
+    public Boolean getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(Boolean deleteFlag) {
+        this.deleteFlag = deleteFlag;
     }
 
     public CustomerType getCustomerType() {

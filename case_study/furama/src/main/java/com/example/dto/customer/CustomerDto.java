@@ -18,12 +18,14 @@ public class CustomerDto {
     private Integer customerGender;
     @Pattern(regexp = "^\\d{9}|\\d{12}", message = "Wrong format! Format should be XXXXXXXXX(123123123)")
     private String customerIdCard;
-    @Pattern(regexp = "^((090)|(091)|(\\((84)\\)\\+((90)|(91))))\\d{7}$", message = "Wrong format! Format should be 090xxxxxxx or 091xxxxxxx or (84)+90xxxxxxx or (84)+91xxxxxxx")
+    @Pattern(regexp = "^((090)|(091)|(\\((84)\\)\\+((90)|(91))))\\d{7}$",
+            message = "Wrong format! Format should be 090xxxxxxx or 091xxxxxxx or (84)+90xxxxxxx or (84)+91xxxxxxx")
     private String customerPhone;
     @Pattern(regexp = "^[a-z][a-z0-9_\\.]{5,32}@[a-z0-9]{2,}(\\.[a-z0-9]{2,}){1,}$")
     private String customerEmail;
     @NotEmpty
     private String customerAddress;
+    private Boolean deleteFlag;
     private CustomerType customerType;
 
     public CustomerDto() {
@@ -99,6 +101,14 @@ public class CustomerDto {
 
     public void setCustomerAddress(String customerAddress) {
         this.customerAddress = customerAddress;
+    }
+
+    public Boolean getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(Boolean deleteFlag) {
+        this.deleteFlag = deleteFlag;
     }
 
     public CustomerType getCustomerType() {

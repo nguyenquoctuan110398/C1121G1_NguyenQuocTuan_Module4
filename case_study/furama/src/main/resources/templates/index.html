@@ -16,7 +16,7 @@
 <!--&#45;&#45;%>-->
 <!--<%@ page contentType="text/html;charset=UTF-8" language="java" %>-->
 <!--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>-->
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>JSP Page</title>
@@ -42,47 +42,48 @@
             GIỚI </p>
     </div>
 </section>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="/home">Furama</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<nav th:insert="~{/layout :: nav}"></nav>
+<!--<nav class="navbar navbar-expand-md navbar-dark bg-dark">-->
+<!--    <div class="container">-->
+<!--        <a class="navbar-brand" href="/home">Furama</a>-->
+<!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"-->
+<!--                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
 
-        <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
-            <ul class="navbar-nav m-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/employees/list">Employee</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/customers/list">Customer</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/services/list">Service</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/contracts/list">Contract</a>
-                </li>
-            </ul>
+<!--        <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">-->
+<!--            <ul class="navbar-nav m-auto">-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="">Home</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="/employees/list">Employee</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="/customers/list">Customer</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="/services/list">Service</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="/contracts/list">Contract</a>-->
+<!--                </li>-->
+<!--            </ul>-->
 
-            <form action="search" method="post" class="form-inline my-2 my-lg-0">
-                <div class="input-group input-group-sm">
-                    <input name="txt" type="text" class="form-control" aria-label="Small"
-                           aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-secondary btn-number">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</nav>
+<!--            <form action="search" method="post" class="form-inline my-2 my-lg-0">-->
+<!--                <div class="input-group input-group-sm">-->
+<!--                    <input name="txt" type="text" class="form-control" aria-label="Small"-->
+<!--                           aria-describedby="inputGroup-sizing-sm" placeholder="Search...">-->
+<!--                    <div class="input-group-append">-->
+<!--                        <button type="submit" class="btn btn-secondary btn-number">-->
+<!--                            <i class="fa fa-search"></i>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
 
 <div class="container">
     <div class="row">

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{/layout :: head}">
+</head>
+<body>
+<nav th:insert="~{/layout :: nav}"></nav>
+<h3>Services</h3>
+<!--<h4>-->
+<!--    <a th:href="@{/customers/create}">-->
+<!--        Add new customer-->
+<!--    </a>-->
+<!--</h4>-->
+
+<button class="btn btn-primary" type="button">
+    <a style="color: black" class="delete_btn"
+       data-mdb-toggle="modal" data-mdb-target="#addService">FACILITY</a>
+</button>
+
+<div class="notify">
+    <div th:if="${message}">
+        <span th:text="${message}"></span>
+    </div>
+</div>
+
+<table id="services">
+
+    <thead>
+    <tr>
+        <th>Service id</th>
+        <th>Service code</th>
+        <th>Service area</th>
+        <th>Service cost</th>
+        <th>Service max people</th>
+        <th>Standard room</th>
+        <th>Description other convenience</th>
+        <th>Pool area</th>
+        <th>Number floor</th>
+        <th>Rent type name</th>
+        <th>Service type name</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="service : ${services}">
+        <td th:text="${service.serviceId}"></td>
+        <td th:text="${service.serviceCode}"></td>
+        <td th:text="${service.serviceArea}"></td>
+        <td th:text="${service.serviceCost}"></td>
+        <td th:text="${service.serviceMaxPeople}"></td>
+        <td th:text="${service.standardRoom}"></td>
+        <td th:text="${service.descriptionOtherConvenience}"></td>
+        <td th:text="${service.poolArea}"></td>
+        <td th:text="${service.numberOfFloors}"></td>
+        <td th:text="${service.rentType.rentTypeName}"></td>
+        <td th:text="${service.serviceType.serviceTypeName}"></td>
+        <!--        <td><a th:href="@{/customers/edit/{customerId}(customerId=${customer.customerId})}">Edit</a>-->
+        <!--        </td>-->
+
+        <!--        <td><a data-bs-toggle="modal" data-bs-target="#deleteModal"-->
+        <!--               onclick="deleteModal($(this))" th:data-id="${customer.customerId}"-->
+        <!--               th:data-name="${customer.customerName}" style="color: blue">Delete</a></td>-->
+
+        <!--        <td><a th:href="@{/customers/view/{customerId}(customerId=${customer.customerId})}">View</a>-->
+        <!--        </td>-->
+    </tr>
+    </tbody>
+
+</table>
+
+<div>
+    <a th:href="@{/services/list/(page=${services.number - 1})}"
+       th:if="${services.hasPrevious()}">Previous</a>
+    <span th:text="${services.number + 1}"></span>/<span th:text="${services.totalPages}"></span>
+    <a th:href="@{/services/list/(page=${services.number + 1})}"
+       th:if="${services.hasNext()}">Next</a>
+</div>
+
+<!--Modal choose service type-->
+<div
+        class="modal fade"
+        id="addService"
+        data-mdb-backdrop="static"
+        data-mdb-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Choose service type</h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                <!--                <input type="hidden" id="customerDelete_id" name="customer_id">-->
+            </div>
+
+            <div class="modal-footer">
+                <!--                <button type="button"  data-mdb-dismiss="modal">Close</button>-->
+                <!--                <button type="button" class="btn btn-primary" id="delete_customer_id">ok</button>-->
+                <button th:each="serviceType : ${serviceTypes}" class="btn btn-secondary">
+                    <a th:href="@{/services/create/{serviceTypeId}(serviceTypeId=${serviceType.serviceTypeId})}"
+                       th:text="${serviceType.serviceTypeName}"></a></button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:insert="/layout :: footer"></footer>
+</body>
+
+</html>

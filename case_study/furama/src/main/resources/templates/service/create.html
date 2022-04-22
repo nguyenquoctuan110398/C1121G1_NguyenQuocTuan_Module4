@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="/layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="background-attachment: fixed; background-position: center bottom;
+      background-repeat: no-repeat;background-size: cover;
+      background-image: url('https://bigdata-vn.com/wp-content/uploads/2021/09/Background-anh-sang-dep.jpg');
+      object-fit: cover;">
+<nav th:insert="~{/layout :: nav}"></nav>
+<h3>Add Service</h3>
+<p style="text-align: center;">
+    <a th:href="@{/services/list}" style="color: white">
+        Back to list services
+    </a>
+</p>
+<div class="container" style="text-align: center">
+    <div id="form" style="display: inline-block; text-align: left">
+
+        <form th:action="@{/services/save}" th:object="${serviceDto}" method="post">
+            <div>
+                <label for="serviceTypeName">Service type name: </label>
+                <select th:field="*{serviceType}" id="serviceTypeName">
+                    <option th:each="serviceType : ${serviceTypes}"
+                            th:if="${id == serviceType.serviceTypeId}"
+                            th:value="${serviceType.serviceTypeId}"
+                            th:text="${serviceType.serviceTypeName}">
+                    </option>
+                </select>
+            </div>
+
+            <div>
+                <label for="code">Code: </label>
+                <input type="text" id="code" th:field="*{serviceCode}">
+            </div>
+
+            <div>
+                <label for="name">Name: </label>
+                <input type="text" id="name" th:field="*{serviceName}">
+            </div>
+            
+            <div>
+                <label for="area">Area: </label>
+                <input type="text" id="area" th:field="*{serviceArea}">
+            </div>
+
+            <div>
+                <label for="cost">Cost: </label>
+                <input type="text" id="cost" th:field="*{serviceCost}">
+            </div>
+
+            <div>
+                <label for="maxPeople">Max people: </label>
+                <input type="text" id="maxPeople" th:field="*{serviceMaxPeople}">
+            </div>
+            
+            <div th:if="${id == 1 || id == 2}">
+                <label for="standardRoom">Standard room: </label>
+                <input type="text" id="standardRoom" th:field="*{standardRoom}">
+            </div>
+
+            <div th:if="${id == 1 || id == 2}">
+                <label for="descriptionOtherConvenience">Description other convenience: </label>
+                <input type="text" id="descriptionOtherConvenience" th:field="*{descriptionOtherConvenience}">
+            </div>
+
+            <div th:if="${id == 1}">
+                <label for="poolArea">Pool area: </label>
+                <input type="text" id="poolArea" th:field="*{poolArea}">
+            </div>
+
+            <div th:if="${id == 1 || id == 2}">
+                <label for="numberOfFloors">Number of floors: </label>
+                <input type="text" id="numberOfFloors" th:field="*{numberOfFloors}">
+            </div>
+
+            <div>
+                <select th:field="*{rentType}">
+                    <option th:each="rentType : ${rentTypes}"
+                            th:value="${rentType.rentTypeId}"
+                            th:text="${rentType.rentTypeName}"></option>
+                </select>
+            </div>
+
+            <div style="text-align: center">
+                <input type="submit" value="Create">
+            </div>
+        </form>
+
+    </div>
+</div>
+<footer th:insert="/layout :: footer"></footer>
+</body>
+<script>
+    function setTimeError() {
+        $(".error").hide();
+    }
+
+    setTimeout(setTimeError, 5000);
+</script>
+</html>

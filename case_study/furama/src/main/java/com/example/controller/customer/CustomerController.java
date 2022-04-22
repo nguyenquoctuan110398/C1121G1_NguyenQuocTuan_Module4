@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 
 @Controller
@@ -29,9 +30,13 @@ public class CustomerController {
     private ICustomerTypeService iCustomerTypeService;
 
     @GetMapping("/list")
-    public String showListCustomer(Model model, @PageableDefault(value = 3) Pageable pageable) {
-        Page<Customer> customers = iCustomerService.findAll(pageable);
+    public String showListCustomer(Model model, @PageableDefault(value = 3) Pageable pageable,
+                                   @RequestParam ("searchByName") Optional<String> nameSearch) {
+        String keyWord = nameSearch.orElse("");
+
+        Page<Customer> customers = iCustomerService.findAll(keyWord, pageable);
         model.addAttribute("customers", customers);
+        model.addAttribute("keyWord", keyWord);
         return "/customer/list";
     }
 
@@ -52,6 +57,7 @@ public class CustomerController {
             model.addAttribute("customerTypes", iCustomerTypeService.findAll());
             return "/customer/create";
         } else {
+            customerDto.setDeleteFlag(true);
             BeanUtils.copyProperties(customerDto, customer);
             redirectAttributes.addFlashAttribute("message", "Create customer success");
 
@@ -64,11 +70,13 @@ public class CustomerController {
     public String editCustomer(@PathVariable Integer customerId,
                                Model model) {
         Customer customer = iCustomerService.findById(customerId);
-        CustomerDto customerDto = new CustomerDto();
+        if(customer != null) {
+            CustomerDto customerDto = new CustomerDto();
 
-        BeanUtils.copyProperties(customer, customerDto);
-        model.addAttribute("customerDto", customerDto);
-        model.addAttribute("customerTypes", iCustomerTypeService.findAll());
+            BeanUtils.copyProperties(customer, customerDto);
+            model.addAttribute("customerDto", customerDto);
+            model.addAttribute("customerTypes", iCustomerTypeService.findAll());
+        }
         return "/customer/edit";
     }
 
@@ -92,7 +100,10 @@ public class CustomerController {
 
     @PostMapping("/delete")
     public String deleteCustomer(@RequestParam Integer deleteByCustomerId) {
-        iCustomerService.remove(deleteByCustomerId);
+//        iCustomerService.remove(deleteByCustomerId);
+        Customer customer = iCustomerService.findById(deleteByCustomerId);
+        customer.setDeleteFlag(false);
+        iCustomerService.save(customer);
         return "redirect:/customers/list";
     }
 }

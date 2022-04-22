@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{/layout :: head}">
+</head>
+<body>
+<nav th:insert="~{/layout :: nav}"></nav>
+<h3>Employees</h3>
+<h4>
+    <a th:href="@{/employees/create}">
+        Add new employee
+    </a>
+</h4>
+
+<table>
+    <tr>
+        <form action="/employees/list">
+            <td><input type="text" name="searchByName" placeholder="Search by name"></td>
+            <td>
+                <input type="submit" value="Search">
+            </td>
+        </form>
+    </tr>
+
+    <tr>
+        <td>
+            <a th:href="@{/employees/list}"><input type="submit" value="Reset"></a>
+        </td>
+    </tr>
+</table>
+
+<div class="notify">
+    <div th:if="${message}">
+        <span th:text="${message}" style="color: green"></span>
+    </div>
+</div>
+
+<table id="customers">
+
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Birthday</th>
+        <th>Id card</th>
+        <th>Salary</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Position</th>
+        <th>Education degree</th>
+        <th>Division</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="employee : ${employees}">
+        <td th:text="${employee.employeeId}"></td>
+        <td th:text="${employee.employeeName}"></td>
+        <td th:text="${employee.employeeBirthday}"></td>
+        <td th:text="${employee.employeeIdCard}"></td>
+        <td th:text="${employee.employeeSalary}"></td>
+        <td th:text="${employee.employeePhone}"></td>
+        <td th:text="${employee.employeeEmail}"></td>
+        <td th:text="${employee.employeeAddress}"></td>
+        <td th:text="${employee.position.positionName}"></td>
+        <td th:text="${employee.educationDegree.educationDegreeName}"></td>
+        <td th:text="${employee.division.divisionName}"></td>
+        <td><a th:href="@{/employees/edit/{employeeId}(employeeId=${employee.employeeId})}">Edit</a>
+        </td>
+
+        <td><a data-bs-toggle="modal" data-bs-target="#deleteModal"
+               onclick="deleteModal($(this))" th:data-id="${employee.employeeId}"
+               th:data-name="${employee.employeeName}" style="color: blue">Delete</a></td>
+
+        <td><a th:href="@{/employees/view/{employeeId}(employeeId=${employee.employeeId})}">View</a>
+        </td>
+    </tr>
+    </tbody>
+
+</table>
+
+<div>
+    <a th:href="@{/employees/list/(page=${employees.number - 1}, searchByName=${keyWord})}"
+       th:if="${employees.hasPrevious()}">Previous</a>
+    <span th:text="${employees.number + 1}"></span>/<span th:text="${employees.totalPages}"></span>
+    <a th:href="@{/employees/list/(page=${employees.number + 1}, searchByName=${keyWord})}"
+       th:if="${employees.hasNext()}">Next</a>
+</div>
+
+<footer th:replace="/layout :: footer"></footer>
+</body>
+
+<!--Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form th:action="@{/employees/delete}" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete employee</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <input type="text" id="deleteByEmployeeId" name="deleteByEmployeeId">
+                <div class="modal-body">
+                    <p id="deleteInfor"></p>
+                    <p id="deleteInforNameEmployee"></p>
+                    <p>Do you want delete <span style="color: red" id="employeeNameDelete"></span>?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                            id="cancelDeleteModalBtn">No
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="deleteModalBtn">Yes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function deleteModal(a) {
+        let employeeId = a.attr("data-id");
+        let employeeName = a.attr("data-name");
+
+        document.getElementById("deleteByEmployeeId").value = employeeId;
+        document.getElementById("employeeNameDelete").innerText = employeeName;
+        console.log(employeeId);
+        console.log(employeeName);
+    }
+</script>
+
+</html>
