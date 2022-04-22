@@ -48,7 +48,7 @@
                         <th>Customer type name</th>
                         <th>Edit</th>
                         <th>Delete</th>
-                        <th>View</th>
+<!--                        <th>View</th>-->
                     </tr>
                     </thead>
 
@@ -74,8 +74,9 @@
                                onclick="deleteModal($(this))" th:data-id="${customer.customerId}"
                                th:data-name="${customer.customerName}" style="color: blue">Delete</a></td>
 
-                        <td><a th:href="@{/customers/view/{customerId}(customerId=${customer.customerId})}">View</a>
-                        </td>
+<!--                        <td><a th:href="@{/customers/view/{customerId}(customerId=${customer.customerId})}">-->
+<!--                            View</a>-->
+<!--                        </td>-->
                     </tr>
                     </tbody>
 

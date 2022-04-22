@@ -51,7 +51,7 @@
         <th>Division</th>
         <th>Edit</th>
         <th>Delete</th>
-        <th>View</th>
+<!--        <th>View</th>-->
     </tr>
     </thead>
 
@@ -75,8 +75,8 @@
                onclick="deleteModal($(this))" th:data-id="${employee.employeeId}"
                th:data-name="${employee.employeeName}" style="color: blue">Delete</a></td>
 
-        <td><a th:href="@{/employees/view/{employeeId}(employeeId=${employee.employeeId})}">View</a>
-        </td>
+<!--        <td><a th:href="@{/employees/view/{employeeId}(employeeId=${employee.employeeId})}">View</a>-->
+<!--        </td>-->
     </tr>
     </tbody>
 
