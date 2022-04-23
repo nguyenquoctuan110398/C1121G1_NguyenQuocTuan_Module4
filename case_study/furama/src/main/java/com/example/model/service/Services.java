@@ -1,6 +1,9 @@
 package com.example.model.service;
 
+import com.example.model.contract.Contract;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table
@@ -25,6 +28,9 @@ public class Services {
     @ManyToOne
     @JoinColumn(name = "rent_type_id", referencedColumnName = "rentTypeId")
     private RentType rentType;
+
+    @OneToMany(mappedBy = "services")
+    private Set<Contract> contracts;
 
     public Services() {
     }
@@ -123,6 +129,14 @@ public class Services {
 
     public void setRentType(RentType rentType) {
         this.rentType = rentType;
+    }
+
+    public Set<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(Set<Contract> contracts) {
+        this.contracts = contracts;
     }
 }
 

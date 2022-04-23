@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{/layout :: head}">
+</head>
+<body>
+<nav th:insert="~{/layout :: nav}"></nav>
+<h3>Contracts</h3>
+<h4>
+    <a th:href="@{/contracts/create}">
+        Add new contract
+    </a>
+</h4>
+
+<!--<table>-->
+<!--    <form action="/contracts/list">-->
+<!--        <tr>-->
+<!--            <td><input type="text" name="searchByName" placeholder="Search by name"></td>-->
+<!--            <td><input type="submit" value="Search"></td>-->
+<!--        </tr>-->
+<!--    </form>-->
+
+<!--    <tr>-->
+<!--        <td>-->
+<!--            <a th:href="@{/contracts/list}"><input type="submit" value="Reset"></a>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--</table>-->
+
+<div class="notify">
+    <div th:if="${message}">
+        <span th:text="${message}" style="color: green"></span>
+    </div>
+</div>
+
+<table id="customers">
+
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Start date</th>
+        <th>End date</th>
+        <th>Deposit</th>
+        <th>Employee name</th>
+        <th>Customer name</th>
+        <th>Service name</th>
+        <!--        <th>Edit</th>-->
+        <!--        <th>Delete</th>-->
+        <th>View</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="contract : ${contracts}">
+
+        <td th:text="${contract.contractId}"></td>
+        <td th:text="${contract.contractStartDate}"></td>
+        <td th:text="${contract.contractEndDate}"></td>
+        <td th:text="${contract.contractDeposit}"></td>
+        <td th:text="${contract.employee.employeeName}"></td>
+        <td th:text="${contract.customer.customerName}"></td>
+        <td th:text="${contract.services.serviceName}"></td>
+
+        <!--        <td><a th:href="@{/customers/edit/{customerId}(customerId=${customer.customerId})}">Edit</a>-->
+        <!--        </td>-->
+
+        <!--        <td><a data-bs-toggle="modal" data-bs-target="#deleteModal"-->
+        <!--               onclick="deleteModal($(this))" th:data-id="${customer.customerId}"-->
+        <!--               th:data-name="${customer.customerName}" style="color: blue">Delete</a></td>-->
+
+        <td><a th:href="@{/contracts/view/{contractId}(contractId=${contract.contractId})}">
+            View</a>
+        </td>
+    </tr>
+    </tbody>
+
+</table>
+
+<div>
+    <a th:href="@{/contracts/list/(page=${contracts.number - 1})}"
+       th:if="${contracts.hasPrevious()}">Previous</a>
+    <span th:text="${contracts.number + 1}"></span>/<span th:text="${contracts.totalPages}"></span>
+    <a th:href="@{/contracts/list/(page=${contracts.number + 1})}"
+       th:if="${contracts.hasNext()}">Next</a>
+</div>
+
+
+<footer th:replace="/layout :: footer"></footer>
+</body>
+
+<!--Delete Modal -->
+<!--<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog">-->
+<!--        <form th:action="@{/contracts/delete}" method="post">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h5 class="modal-title" id="deleteModalLabel">Delete Contract</h5>-->
+<!--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--                </div>-->
+<!--                <input type="text" id="deleteByContractId" name="deleteByContractId">-->
+<!--                <div class="modal-body">-->
+<!--                    <p id="deleteInfor"></p>-->
+<!--                    <p id="deleteInforNameCustomer"></p>-->
+<!--                    <p>Do you want delete <span style="color: red" id="customerNameDelete"></span>?</p>-->
+<!--                </div>-->
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"-->
+<!--                            id="cancelDeleteModalBtn">No-->
+<!--                    </button>-->
+<!--                    <button type="submit" class="btn btn-primary" id="deleteModalBtn">Yes</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<script>-->
+<!--    function deleteModal(a) {-->
+<!--        let customerId = a.attr("data-id");-->
+<!--        let customerName = a.attr("data-name");-->
+
+<!--        document.getElementById("deleteByContractId").value = customerId;-->
+<!--        document.getElementById("contractNameDelete").innerText = customerName;-->
+<!--        console.log(customerId);-->
+<!--        console.log(customerName);-->
+<!--    }-->
+<!--</script>-->
+
+</html>
