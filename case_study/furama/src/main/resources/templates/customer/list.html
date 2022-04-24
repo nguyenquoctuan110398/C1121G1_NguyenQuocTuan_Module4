@@ -6,6 +6,11 @@
 <nav th:insert="~{/layout :: nav}"></nav>
 <h3>Customers</h3>
 <h4>
+    <a th:href="@{/customers/customer-list-using-service}">
+        List of customers who are using the service
+    </a>
+</h4>
+<h4>
     <a th:href="@{/customers/create}">
         Add new customer
     </a>

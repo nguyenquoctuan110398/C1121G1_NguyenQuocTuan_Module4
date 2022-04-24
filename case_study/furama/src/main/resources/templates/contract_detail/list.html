@@ -4,17 +4,12 @@
 </head>
 <body>
 <nav th:insert="~{/layout :: nav}"></nav>
-<h3>Contracts</h3>
-<h4>
-    <a th:href="@{/contract-details/list}">
-        Go to list contract detail
-    </a>
-</h4>
-<h4>
-    <a th:href="@{/contracts/create}">
-        Add new contract
-    </a>
-</h4>
+<h3>Contract details</h3>
+<!--<h4>-->
+<!--    <a th:href="@{/contract-details/create}">-->
+<!--        Add new contract detail-->
+<!--    </a>-->
+<!--</h4>-->
 
 <!--<table>-->
 <!--    <form action="/contracts/list">-->
@@ -41,29 +36,22 @@
 
     <thead>
     <tr>
-        <th>Id</th>
-        <th>Start date</th>
-        <th>End date</th>
-        <th>Deposit</th>
-        <th>Employee name</th>
-        <th>Customer name</th>
-        <th>Service name</th>
-        <!--        <th>Edit</th>-->
-        <!--        <th>Delete</th>-->
+        <th>Contract detail id</th>
+        <th>Contract id</th>
+        <th>Attach service name</th>
+        <th>Quantity</th>
         <th>View</th>
     </tr>
     </thead>
 
     <tbody>
-    <tr th:each="contract : ${contracts}">
+    <tr th:each="contractDetail : ${contractDetails}">
 
-        <td th:text="${contract.contractId}"></td>
-        <td th:text="${contract.contractStartDate}"></td>
-        <td th:text="${contract.contractEndDate}"></td>
-        <td th:text="${contract.contractDeposit}"></td>
-        <td th:text="${contract.employee.employeeName}"></td>
-        <td th:text="${contract.customer.customerName}"></td>
-        <td th:text="${contract.services.serviceName}"></td>
+        <td th:text="${contractDetail.contractDetailId}"></td>
+        <td th:text="${contractDetail.contract.contractId}"></td>
+        <td th:text="${contractDetail.attachService.attachServiceName}"></td>
+        <td th:text="${contractDetail.quantity}"></td>
+
 
         <!--        <td><a th:href="@{/customers/edit/{customerId}(customerId=${customer.customerId})}">Edit</a>-->
         <!--        </td>-->
@@ -72,7 +60,7 @@
         <!--               onclick="deleteModal($(this))" th:data-id="${customer.customerId}"-->
         <!--               th:data-name="${customer.customerName}" style="color: blue">Delete</a></td>-->
 
-        <td><a th:href="@{/contracts/view/{contractId}(contractId=${contract.contractId})}">
+        <td><a th:href="@{/contract-details/view/{contractDetailId}(contractDetailId=${contractDetail.contractDetailId})}">
             View</a>
         </td>
     </tr>
@@ -81,11 +69,11 @@
 </table>
 
 <div>
-    <a th:href="@{/contracts/list/(page=${contracts.number - 1})}"
-       th:if="${contracts.hasPrevious()}">Previous</a>
-    <span th:text="${contracts.number + 1}"></span>/<span th:text="${contracts.totalPages}"></span>
-    <a th:href="@{/contracts/list/(page=${contracts.number + 1})}"
-       th:if="${contracts.hasNext()}">Next</a>
+    <a th:href="@{/contract-details/list/(page=${contractDetails.number - 1})}"
+       th:if="${contractDetails.hasPrevious()}">Previous</a>
+    <span th:text="${contractDetails.number + 1}"></span>/<span th:text="${contractDetails.totalPages}"></span>
+    <a th:href="@{/contract-details/list/(page=${contractDetails.number + 1})}"
+       th:if="${contractDetails.hasNext()}">Next</a>
 </div>
 
 

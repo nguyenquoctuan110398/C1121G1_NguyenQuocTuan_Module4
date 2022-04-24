@@ -16,4 +16,9 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
 
     @Query("select c from Customer c where c.deleteFlag = true")
     List<Customer> findAllList();
+
+    @Query(value = "select c from Customer c " +
+            "join Contract co on c.customerId = co.customer.customerId " +
+            "group by c.customerId")
+    Page<Customer> findAllCustomerUsingService(Pageable pageable);
 }

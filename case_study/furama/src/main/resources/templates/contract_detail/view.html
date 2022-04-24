@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+<body>
+<nav th:insert="~{/layout :: nav}"></nav>
+<h3>View contract detail</h3>
+<p>
+    <a th:href="@{/contract-details/list}">
+        Back to contract detail list
+    </a>
+</p>
+<div id="detail">
+    <div class="cusdetail">
+        <label>Contract detail id: </label>
+        <label th:text="${contractDetail.contractDetailId}"></label>
+    </div>
+
+    <div class="cusdetail">
+        <label>Contract start date: </label>
+        <label th:text="${contractDetail.contract.contractStartDate}"></label>
+    </div>
+
+    <div class="cusdetail">
+        <label>Contract end date: </label>
+        <label th:text="${contractDetail.contract.contractEndDate}"></label>
+    </div>
+
+    <div class="cusdetail">
+        <label>Contract deposit: </label>
+        <label th:text="${contractDetail.contract.contractDeposit}"></label>
+    </div>
+
+    <div class="cusdetail">
+        <label>Employee name: </label>
+        <label th:text="${contractDetail.contract.employee.employeeName}"></label>
+    </div>
+
+    <div class="cusdetail">
+        <label>Customer name: </label>
+        <label th:text="${contractDetail.contract.customer.customerName}"></label>
+    </div>
+
+    <div class="cusdetail">
+        <label>Service name: </label>
+        <label th:text="${contractDetail.contract.services.serviceName}"></label>
+    </div>
+
+    <div class="cusdetail">
+        <label>Attach service name: </label>
+        <label th:text="${contractDetail.attachService.attachServiceName}"></label>
+    </div>
+
+    <div class="cusdetail">
+        <label>Quantity: </label>
+        <label th:text="${contractDetail.quantity}"></label>
+    </div>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

@@ -16,4 +16,6 @@ public interface ICustomerService {
     void remove(Integer deleteByCustomerId);
 
     List<Customer> findAllList();
+
+    Page<Customer> findAllCustomerUsingService(Pageable pageable);
 }

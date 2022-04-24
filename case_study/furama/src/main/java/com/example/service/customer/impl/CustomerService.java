@@ -40,4 +40,9 @@ public class CustomerService implements ICustomerService {
     public List<Customer> findAllList() {
         return iCustomerRepository.findAllList();
     }
+
+    @Override
+    public Page<Customer> findAllCustomerUsingService(Pageable pageable) {
+        return iCustomerRepository.findAllCustomerUsingService(pageable);
+    }
 }

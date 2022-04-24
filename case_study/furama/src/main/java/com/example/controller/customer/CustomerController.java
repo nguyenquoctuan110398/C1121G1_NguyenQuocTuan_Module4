@@ -106,4 +106,11 @@ public class CustomerController {
         iCustomerService.save(customer);
         return "redirect:/customers/list";
     }
+
+    @GetMapping("/customer-list-using-service")
+    public String showListCustomerUsingService(Model model, @PageableDefault(value = 3) Pageable pageable){
+        Page<Customer> customers = iCustomerService.findAllCustomerUsingService(pageable);
+        model.addAttribute("customers", customers);
+        return "/customer/list_customer_using_service";
+    }
 }
