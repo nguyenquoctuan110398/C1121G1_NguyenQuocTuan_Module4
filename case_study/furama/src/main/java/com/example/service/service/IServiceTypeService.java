@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface IServiceTypeService {
     List<ServiceType> findAll();
+
+    ServiceType findById(Integer id);
 }

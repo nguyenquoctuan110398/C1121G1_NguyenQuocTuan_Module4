@@ -2,8 +2,10 @@ package com.example.controller.customer;
 
 import com.example.dto.customer.CustomerDto;
 import com.example.model.customer.Customer;
+import com.example.model.customer.CustomerUsingService;
 import com.example.service.customer.ICustomerService;
 import com.example.service.customer.ICustomerTypeService;
+import com.example.service.customer.ICustomerUsingServiceService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -28,6 +31,9 @@ public class CustomerController {
 
     @Autowired
     private ICustomerTypeService iCustomerTypeService;
+
+    @Autowired
+    private ICustomerUsingServiceService iCustomerUsingServiceService;
 
     @GetMapping("/list")
     public String showListCustomer(Model model, @PageableDefault(value = 3) Pageable pageable,
@@ -108,9 +114,10 @@ public class CustomerController {
     }
 
     @GetMapping("/customer-list-using-service")
-    public String showListCustomerUsingService(Model model, @PageableDefault(value = 3) Pageable pageable){
-        Page<Customer> customers = iCustomerService.findAllCustomerUsingService(pageable);
-        model.addAttribute("customers", customers);
+    public String showListCustomerUsingService(Model model){
+//        Page<CustomerUsingService> customerUsingServices = iCustomerUsingServiceService.findAll(pageable);
+        List<CustomerUsingService> customerUsingServices = iCustomerUsingServiceService.findAll();
+        model.addAttribute("customerUsingServices", customerUsingServices);
         return "/customer/list_customer_using_service";
     }
 }

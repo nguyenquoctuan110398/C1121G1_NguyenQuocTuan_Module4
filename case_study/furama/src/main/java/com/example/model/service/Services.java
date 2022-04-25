@@ -13,13 +13,18 @@ public class Services {
     private Integer serviceId;
     private String serviceCode;
     private String serviceName;
-    private Integer serviceArea;
-    private Double serviceCost;
-    private Integer serviceMaxPeople;
+    @Column(columnDefinition = "int")
+    private String serviceArea;
+    @Column(columnDefinition = "double")
+    private String serviceCost;
+    @Column(columnDefinition = "int")
+    private String serviceMaxPeople;
     private String standardRoom;
     private String descriptionOtherConvenience;
-    private Double poolArea;
-    private Integer numberOfFloors;
+    @Column(columnDefinition = "double")
+    private String poolArea;
+    @Column(columnDefinition = "int")
+    private String numberOfFloors;
 
     @ManyToOne
     @JoinColumn(name = "service_type_id", referencedColumnName = "serviceTypeId")
@@ -59,27 +64,27 @@ public class Services {
         this.serviceName = serviceName;
     }
 
-    public Integer getServiceArea() {
+    public String getServiceArea() {
         return serviceArea;
     }
 
-    public void setServiceArea(Integer serviceArea) {
+    public void setServiceArea(String serviceArea) {
         this.serviceArea = serviceArea;
     }
 
-    public Double getServiceCost() {
+    public String getServiceCost() {
         return serviceCost;
     }
 
-    public void setServiceCost(Double serviceCost) {
+    public void setServiceCost(String serviceCost) {
         this.serviceCost = serviceCost;
     }
 
-    public Integer getServiceMaxPeople() {
+    public String getServiceMaxPeople() {
         return serviceMaxPeople;
     }
 
-    public void setServiceMaxPeople(Integer serviceMaxPeople) {
+    public void setServiceMaxPeople(String serviceMaxPeople) {
         this.serviceMaxPeople = serviceMaxPeople;
     }
 
@@ -99,19 +104,19 @@ public class Services {
         this.descriptionOtherConvenience = descriptionOtherConvenience;
     }
 
-    public Double getPoolArea() {
+    public String getPoolArea() {
         return poolArea;
     }
 
-    public void setPoolArea(Double poolArea) {
+    public void setPoolArea(String poolArea) {
         this.poolArea = poolArea;
     }
 
-    public Integer getNumberOfFloors() {
+    public String getNumberOfFloors() {
         return numberOfFloors;
     }
 
-    public void setNumberOfFloors(Integer numberOfFloors) {
+    public void setNumberOfFloors(String numberOfFloors) {
         this.numberOfFloors = numberOfFloors;
     }
 

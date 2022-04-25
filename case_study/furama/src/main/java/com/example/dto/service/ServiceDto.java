@@ -2,21 +2,27 @@ package com.example.dto.service;
 
 import com.example.model.service.RentType;
 import com.example.model.service.ServiceType;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Pattern;
 
-public class ServiceDto {
+public class ServiceDto implements Validator {
     private Integer serviceId;
     @Pattern(regexp = "^(DV)-\\d{4}$", message = "Wrong format! Format should be DV-XXXX")
     private String serviceCode;
     private String serviceName;
-    private Integer serviceArea;
-    private Double serviceCost;
-    private Integer serviceMaxPeople;
+    @Pattern(regexp = "^[1-9]\\d*$", message = "Must be number and greater than 0")
+    private String serviceArea;
+    @Pattern(regexp = "^[1-9]\\d*(.?\\d+)?$", message = "Must be number and greater than 0")
+    private String serviceCost;
+    @Pattern(regexp = "^[1-9]\\d*$", message = "Must be number and greater than 0")
+    private String serviceMaxPeople;
     private String standardRoom;
     private String descriptionOtherConvenience;
-    private Double poolArea;
-    private Integer numberOfFloors;
+    private String poolArea;
+    private String numberOfFloors;
     private ServiceType serviceType;
     private RentType rentType;
 
@@ -47,27 +53,27 @@ public class ServiceDto {
         this.serviceName = serviceName;
     }
 
-    public Integer getServiceArea() {
+    public String getServiceArea() {
         return serviceArea;
     }
 
-    public void setServiceArea(Integer serviceArea) {
+    public void setServiceArea(String serviceArea) {
         this.serviceArea = serviceArea;
     }
 
-    public Double getServiceCost() {
+    public String getServiceCost() {
         return serviceCost;
     }
 
-    public void setServiceCost(Double serviceCost) {
+    public void setServiceCost(String serviceCost) {
         this.serviceCost = serviceCost;
     }
 
-    public Integer getServiceMaxPeople() {
+    public String getServiceMaxPeople() {
         return serviceMaxPeople;
     }
 
-    public void setServiceMaxPeople(Integer serviceMaxPeople) {
+    public void setServiceMaxPeople(String serviceMaxPeople) {
         this.serviceMaxPeople = serviceMaxPeople;
     }
 
@@ -87,19 +93,19 @@ public class ServiceDto {
         this.descriptionOtherConvenience = descriptionOtherConvenience;
     }
 
-    public Double getPoolArea() {
+    public String getPoolArea() {
         return poolArea;
     }
 
-    public void setPoolArea(Double poolArea) {
+    public void setPoolArea(String poolArea) {
         this.poolArea = poolArea;
     }
 
-    public Integer getNumberOfFloors() {
+    public String getNumberOfFloors() {
         return numberOfFloors;
     }
 
-    public void setNumberOfFloors(Integer numberOfFloors) {
+    public void setNumberOfFloors(String numberOfFloors) {
         this.numberOfFloors = numberOfFloors;
     }
 
@@ -117,5 +123,33 @@ public class ServiceDto {
 
     public void setRentType(RentType rentType) {
         this.rentType = rentType;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        final String regexDoubleNumber = "^[1-9]\\d*.\\d*$";
+        final String regexIntNumber = "^[1-9]$";
+
+        ServiceDto serviceDto = (ServiceDto) target;
+
+        if ((serviceDto.getServiceType().getServiceTypeId() == 1)) {
+            if (!serviceDto.poolArea.matches(regexDoubleNumber)) {
+                errors.rejectValue("poolArea", "", "Must be number and greater than 0");
+            }
+            if (!serviceDto.numberOfFloors.matches(regexIntNumber)) {
+                errors.rejectValue("numberOfFloors", "", "Must be number and greater than 0");
+            }
+        }
+
+        if (serviceDto.getServiceType().getServiceTypeId() == 2){
+            if (!serviceDto.numberOfFloors.matches(regexIntNumber)) {
+                errors.rejectValue("numberOfFloors", "", "Must be number and greater than 0");
+            }
+        }
     }
 }

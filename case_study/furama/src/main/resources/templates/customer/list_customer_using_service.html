@@ -47,16 +47,13 @@
 
     <thead>
     <tr>
-        <th>Id</th>
-        <th>Code</th>
-        <th>Name</th>
-        <th>Birthday</th>
-        <th>Gender</th>
-        <th>Id Card</th>
-        <th>Phone</th>
-        <th>Email</th>
-        <th>Address</th>
-        <th>Customer type name</th>
+        <th>STT</th>
+        <th>Customer code</th>
+        <th>Customer name</th>
+        <th>Contract id</th>
+        <th>Service name</th>
+        <th>Attach service name</th>
+        <th>Quantity</th>
 <!--        <th>Edit</th>-->
 <!--        <th>Delete</th>-->
         <!--                        <th>View</th>-->
@@ -64,20 +61,14 @@
     </thead>
 
     <tbody>
-    <tr th:each="customer : ${customers}">
-        <td th:text="${customer.customerId}"></td>
-        <td th:text="${customer.customerCode}"></td>
-        <td th:text="${customer.customerName}"></td>
-        <td th:text="${customer.customerBirthday}"></td>
-        <td th:switch="${customer.customerGender}">
-            <span th:case="0" th:text="Nữ"></span>
-            <span th:case="1" th:text="Nam"></span>
-        </td>
-        <td th:text="${customer.customerIdCard}"></td>
-        <td th:text="${customer.customerPhone}"></td>
-        <td th:text="${customer.customerEmail}"></td>
-        <td th:text="${customer.customerAddress}"></td>
-        <td th:text="${customer.customerType.customerTypeName}"></td>
+    <tr th:each="customerUsingService, loop : ${customerUsingServices}">
+        <td th:text="${loop.count}"></td>
+        <td th:text="${customerUsingService.customerCode}"></td>
+        <td th:text="${customerUsingService.customerName}"></td>
+        <td th:text="${customerUsingService.contractId}"></td>
+        <td th:text="${customerUsingService.serviceName}"></td>
+        <td th:text="${customerUsingService.attachServiceName}"></td>
+        <td th:text="${customerUsingService.quantity}"></td>
 <!--        <td><a th:href="@{/customers/edit/{customerId}(customerId=${customer.customerId})}">Edit</a>-->
 <!--        </td>-->
 
@@ -94,11 +85,11 @@
 </table>
 
 <div>
-    <a th:href="@{/customers/customer-list-using-service/(page=${customers.number - 1})}"
-       th:if="${customers.hasPrevious()}">Previous</a>
-    <span th:text="${customers.number + 1}"></span>/<span th:text="${customers.totalPages}"></span>
-    <a th:href="@{/customers/customer-list-using-service/(page=${customers.number + 1})}"
-       th:if="${customers.hasNext()}">Next</a>
+    <a th:href="@{/customers/customer-list-using-service/(page=${customerUsingServices.number - 1})}"
+       th:if="${customerUsingServices.hasPrevious()}">Previous</a>
+    <span th:text="${customerUsingServices.number + 1}"></span>/<span th:text="${customerUsingServices.totalPages}"></span>
+    <a th:href="@{/customers/customer-list-using-service/(page=${customerUsingServices.number + 1})}"
+       th:if="${customerUsingServices.hasNext()}">Next</a>
 </div>
 
 <footer th:replace="/layout :: footer"></footer>

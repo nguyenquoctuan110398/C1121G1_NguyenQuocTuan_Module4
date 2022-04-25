@@ -44,7 +44,7 @@ public class ServicesController {
 
     @GetMapping("/create/{id}")
     public String createService(Model model, @PathVariable Integer id) {
-        model.addAttribute("id", id);
+        model.addAttribute("idService", id);
         model.addAttribute("rentTypes", iRentTypeService.findAll());
         model.addAttribute("serviceTypes", iServiceTypeService.findAll());
         model.addAttribute("serviceDto", new ServiceDto());
@@ -54,17 +54,26 @@ public class ServicesController {
     @PostMapping("/save")
     public String saveService(Model model, RedirectAttributes redirectAttributes,
                               @Valid @ModelAttribute ServiceDto serviceDto,
-                              BindingResult bindingResult,
-                              Services services) {
+                              BindingResult bindingResult) {
+
+//        if(serviceDto != null){
+        Integer id = serviceDto.getServiceType().getServiceTypeId();
+            serviceDto.validate(serviceDto, bindingResult);
+
+//        }
         if (bindingResult.hasFieldErrors()){
+            model.addAttribute("serviceDto", serviceDto);
             model.addAttribute("rentTypes", iRentTypeService.findAll());
+            model.addAttribute("serviceTypes", iServiceTypeService.findAll());
+            model.addAttribute("idService", id);
             return "/service/create";
-        } else {
+        }
+        Services services = new Services();
             BeanUtils.copyProperties(serviceDto, services);
             redirectAttributes.addFlashAttribute("message", "Create service success");
 
             iFacilityService.save(services);
             return "redirect:/services/list";
-        }
+
     }
 }

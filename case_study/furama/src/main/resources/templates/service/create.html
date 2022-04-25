@@ -18,14 +18,13 @@
 <div class="container" style="text-align: center">
     <div id="form" style="display: inline-block; text-align: left">
 
-        <form th:action="@{/services/save}" th:object="${serviceDto}" method="post">
+        <form th:action="@{/services/save}"
+              th:object="${serviceDto}" method="post">
             <div>
                 <label for="serviceTypeName">Service type name: </label>
-                <select th:field="*{serviceType}" id="serviceTypeName">
-                    <option th:each="serviceType : ${serviceTypes}"
-                            th:if="${id == serviceType.serviceTypeId}"
-                            th:value="${serviceType.serviceTypeId}"
-                            th:text="${serviceType.serviceTypeName}">
+                <select th:field="*{serviceType}" id="serviceTypeName" >
+                    <option th:if="${itemp.serviceTypeId==idService}" th:each="itemp : ${serviceTypes}"
+                            th:value="${itemp.serviceTypeId}" th:text="${itemp.serviceTypeName}">
                     </option>
                 </select>
             </div>
@@ -33,6 +32,7 @@
             <div>
                 <label for="code">Code: </label>
                 <input type="text" id="code" th:field="*{serviceCode}">
+                <div class="error" th:errors="*{serviceCode}"></div>
             </div>
 
             <div>
@@ -43,36 +43,42 @@
             <div>
                 <label for="area">Area: </label>
                 <input type="text" id="area" th:field="*{serviceArea}">
+                <div class="error" th:errors="*{serviceArea}"></div>
+
             </div>
 
             <div>
                 <label for="cost">Cost: </label>
                 <input type="text" id="cost" th:field="*{serviceCost}">
+                <div class="error" th:errors="*{serviceCost}"></div>
             </div>
 
             <div>
                 <label for="maxPeople">Max people: </label>
                 <input type="text" id="maxPeople" th:field="*{serviceMaxPeople}">
+                <div class="error" th:errors="*{serviceMaxPeople}"></div>
             </div>
             
-            <div th:if="${id == 1 || id == 2}">
+            <div th:if="${idService == 1 || idService == 2}">
                 <label for="standardRoom">Standard room: </label>
                 <input type="text" id="standardRoom" th:field="*{standardRoom}">
             </div>
 
-            <div th:if="${id == 1 || id == 2}">
+            <div th:if="${idService == 1 || idService == 2}">
                 <label for="descriptionOtherConvenience">Description other convenience: </label>
                 <input type="text" id="descriptionOtherConvenience" th:field="*{descriptionOtherConvenience}">
             </div>
 
-            <div th:if="${id == 1}">
+            <div th:if="${idService == 1}">
                 <label for="poolArea">Pool area: </label>
                 <input type="text" id="poolArea" th:field="*{poolArea}">
+                <div class="error" th:errors="*{poolArea}"></div>
             </div>
 
-            <div th:if="${id == 1 || id == 2}">
+            <div th:if="${idService == 1 || idService == 2}">
                 <label for="numberOfFloors">Number of floors: </label>
                 <input type="text" id="numberOfFloors" th:field="*{numberOfFloors}">
+                <div class="error" th:errors="*{numberOfFloors}"></div>
             </div>
 
             <div>
