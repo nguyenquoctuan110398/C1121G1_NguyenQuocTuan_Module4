@@ -22,12 +22,15 @@
 
             <label for="startDate">Star date: </label>
             <input type="date" id="startDate" th:field="*{contractStartDate}">
+            <div class="error" th:errors="*{contractStartDate}"></div>
 
             <label for="endDate">End date: </label>
             <input type="date" id="endDate" th:field="*{contractEndDate}">
+            <div class="error" th:errors="*{contractEndDate}"></div>
 
             <label for="deposit">Deposit: </label>
             <input type="text" id="deposit" th:field="*{contractDeposit}">
+            <div class="error" th:errors="*{contractDeposit}"></div>
 
             <label for="employee">Employee name: </label>
             <select id="employee" th:field="*{employee}">
