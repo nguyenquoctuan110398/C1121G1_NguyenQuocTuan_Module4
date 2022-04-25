@@ -116,7 +116,7 @@ public class CustomerController {
     @GetMapping("/customer-list-using-service")
     public String showListCustomerUsingService(Model model){
 //        Page<CustomerUsingService> customerUsingServices = iCustomerUsingServiceService.findAll(pageable);
-        List<CustomerUsingService> customerUsingServices = iCustomerUsingServiceService.findAll();
+            List<CustomerUsingService> customerUsingServices = iCustomerUsingServiceService.findAll();
         model.addAttribute("customerUsingServices", customerUsingServices);
         return "/customer/list_customer_using_service";
     }

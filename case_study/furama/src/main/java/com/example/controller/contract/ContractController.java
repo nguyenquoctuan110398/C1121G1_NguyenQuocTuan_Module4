@@ -59,6 +59,9 @@ public class ContractController {
                                @Valid @ModelAttribute ContractDto contractDto,
                                BindingResult bindingResult,
                                Contract contract){
+
+        contractDto.validate(contractDto, bindingResult);
+
         if (bindingResult.hasFieldErrors()){
             model.addAttribute("employees", iEmployeeService.findAllList());
             model.addAttribute("customers", iCustomerService.findAllList());

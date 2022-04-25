@@ -15,7 +15,8 @@ public class Employee {
     @Column(columnDefinition = "date")
     private String employeeBirthday;
     private String employeeIdCard;
-    private Double employeeSalary;
+    @Column(columnDefinition = "double")
+    private String employeeSalary;
     private String employeePhone;
     private String employeeEmail;
     private String employeeAddress;
@@ -71,11 +72,11 @@ public class Employee {
         this.employeeIdCard = employeeIdCard;
     }
 
-    public Double getEmployeeSalary() {
+    public String getEmployeeSalary() {
         return employeeSalary;
     }
 
-    public void setEmployeeSalary(Double employeeSalary) {
+    public void setEmployeeSalary(String employeeSalary) {
         this.employeeSalary = employeeSalary;
     }
 

@@ -3,12 +3,19 @@ package com.example.dto.contract;
 import com.example.model.customer.Customer;
 import com.example.model.employee.Employee;
 import com.example.model.service.Services;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
-public class ContractDto {
+import javax.validation.constraints.Pattern;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+public class ContractDto implements Validator {
     private Integer contractId;
     private String contractStartDate;
     private String contractEndDate;
-    private Double contractDeposit;
+    @Pattern(regexp = "^[1-9]\\d*$")
+    private String contractDeposit;
     private Employee employee;
     private Customer customer;
     private Services services;
@@ -40,11 +47,11 @@ public class ContractDto {
         this.contractEndDate = contractEndDate;
     }
 
-    public Double getContractDeposit() {
+    public String getContractDeposit() {
         return contractDeposit;
     }
 
-    public void setContractDeposit(Double contractDeposit) {
+    public void setContractDeposit(String contractDeposit) {
         this.contractDeposit = contractDeposit;
     }
 
@@ -70,5 +77,28 @@ public class ContractDto {
 
     public void setServices(Services services) {
         this.services = services;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        final String REGEX_DATE = "^\\d{4}[\\-\\/\\s]?((((0[13578])|(1[02]))[\\-\\/\\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\\-\\/\\s]?(([0-2][0-9])|(30)))|(02[\\-\\/\\s]?[0-2][0-9]))$";
+        ContractDto contractDTO = (ContractDto) target;
+        if (!contractDTO.getContractEndDate().matches(REGEX_DATE)) {
+            errors.rejectValue("endDate", "err.start.day", "invalid date");
+        } else {
+            if (contractDTO.getContractStartDate().matches(REGEX_DATE)) {
+                DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate dayStart = LocalDate.parse(contractDTO.getContractStartDate(), dateTimeFormatter);
+                LocalDate dayEnd = LocalDate.parse(contractDTO.getContractEndDate(), dateTimeFormatter);
+                if (dayEnd.isBefore(dayStart)) {
+                    errors.rejectValue("endDate", "err.day.before", "End date must be after Start date");
+                }
+            }
+        }
     }
 }

@@ -13,7 +13,8 @@ public class EmployeeDto {
     private String employeeBirthday;
     @Pattern(regexp = "^\\d{9}|\\d{12}", message = "Wrong format! Format should be XXXXXXXXX(123123123)")
     private String employeeIdCard;
-    private Double employeeSalary;
+    @Pattern(regexp = "^[1-9]\\d*(.?\\d+)?$", message = "Must be number and greater than 0")
+    private String employeeSalary;
     @Pattern(regexp = "^((090)|(091)|(\\((84)\\)\\+((90)|(91))))\\d{7}$",
             message = "Wrong format! Format should be 090xxxxxxx or 091xxxxxxx or (84)+90xxxxxxx or (84)+91xxxxxxx")
     private String employeePhone;
@@ -60,11 +61,11 @@ public class EmployeeDto {
         this.employeeIdCard = employeeIdCard;
     }
 
-    public Double getEmployeeSalary() {
+    public String getEmployeeSalary() {
         return employeeSalary;
     }
 
-    public void setEmployeeSalary(Double employeeSalary) {
+    public void setEmployeeSalary(String employeeSalary) {
         this.employeeSalary = employeeSalary;
     }
 

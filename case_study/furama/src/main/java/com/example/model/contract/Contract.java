@@ -18,7 +18,8 @@ public class Contract {
     private String contractStartDate;
     @Column(columnDefinition="datetime")
     private String contractEndDate;
-    private Double contractDeposit;
+    @Column(columnDefinition = "double")
+    private String contractDeposit;
     
     @ManyToOne
     @JoinColumn(name = "employee_id", referencedColumnName = "employeeId")
@@ -62,12 +63,12 @@ public class Contract {
         this.contractEndDate = contractEndDate;
     }
 
-    public Double getContractDeposit() {
+    public String getContractDeposit() {
         return contractDeposit;
     }
 
-    public void setContractDeposit(Double deposit) {
-        this.contractDeposit = deposit;
+    public void setContractDeposit(String contractDeposit) {
+        this.contractDeposit = contractDeposit;
     }
 
     public Employee getEmployee() {
