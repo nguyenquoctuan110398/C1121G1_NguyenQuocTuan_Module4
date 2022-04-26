@@ -37,6 +37,10 @@ public class Employee {
     @OneToMany(mappedBy = "employee")
     private Set<Contract> contracts;
 
+    @OneToOne
+    @JoinColumn(name = "username", referencedColumnName = "username")
+    private AppUser appUser;
+
     public Employee() {
     }
 
@@ -142,5 +146,13 @@ public class Employee {
 
     public void setContracts(Set<Contract> contracts) {
         this.contracts = contracts;
+    }
+
+    public AppUser getUser() {
+        return appUser;
+    }
+
+    public void setUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 }

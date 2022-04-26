@@ -170,6 +170,18 @@
                 </li>
             </ul>
         </div>
+
+        <div>
+            <a th:if="${#request.userPrincipal == null}" class="navbar-brand"
+               th:href="@{/login}" style="float: right">Login
+            </a>
+            <h4 th:if="${#request.userPrincipal != null}" style="float: right; color: deepskyblue">
+                Welcome: <span th:text="${#request.userPrincipal.name}"></span>
+                <span><a th:href="@{/logout}" style="color: gray">Logout</a>
+            </span></h4>
+
+        </div>
+
     </div>
 </nav>
 

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/login.css">
+    <!--    <link rel="stylesheet" href="/css/view_login.scss">-->
+<!--        <link rel="stylesheet" href="login.css">-->
+</head>
+<body>
+
+<div class="background-wrap">
+    <div class="background"></div>
+</div>
+
+<form id="accesspanel" th:action="@{/j_spring_security_check}" method="post">
+    <h1 id="litheader">Login</h1>
+    <div class="inset">
+        <p>
+            <input type="text" name="username" id="username" placeholder="Username">
+        </p>
+        <p>
+            <input type="password" name="password" id="password" placeholder="Password">
+        </p>
+        <div style="text-align: center;">
+            <div class="checkboxouter">
+                <input type="checkbox" name="remember-me" id="remember-me" value="Remember">
+                <label class="checkbox"></label>
+            </div>
+            <label for="remember-me">Remember me</label>
+        </div>
+        <input class="loginLoginValue" type="hidden" name="service" value="login" />
+    </div>
+    <p class="p-container">
+        <input type="submit" name="Login" id="go" value="Login">
+    </p>
+</form>
+
+
+<!--<div class="panda">-->
+<!--    <div class="ear"></div>-->
+<!--    <div class="face">-->
+<!--        <div class="eye-shade"></div>-->
+<!--        <div class="eye-white">-->
+<!--            <div class="eye-ball"></div>-->
+<!--        </div>-->
+<!--        <div class="eye-shade rgt"></div>-->
+<!--        <div class="eye-white rgt">-->
+<!--            <div class="eye-ball"></div>-->
+<!--        </div>-->
+<!--        <div class="nose"></div>-->
+<!--        <div class="mouth"></div>-->
+<!--    </div>-->
+<!--    <div class="body"> </div>-->
+<!--    <div class="foot">-->
+<!--        <div class="finger"></div>-->
+<!--    </div>-->
+<!--    <div class="foot rgt">-->
+<!--        <div class="finger"></div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<form>-->
+<!--    <div class="hand"></div>-->
+<!--    <div class="hand rgt"></div>-->
+<!--    <h1>Panda Login</h1>-->
+<!--    <div class="form-group">-->
+<!--        <input required="required" class="form-control"/>-->
+<!--        <label class="form-label">Username    </label>-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--        <input id="password" type="password" required="required" class="form-control"/>-->
+<!--        <label class="form-label">Password</label>-->
+<!--        <p class="alert">Invalid Credentials..!!</p>-->
+<!--        <button class="btn">Login </button>-->
+<!--    </div>-->
+<!--</form>-->
+</body>
+
+<script>
+    $(document).ready(function() {
+
+        var state = false;
+
+        //$("input:text:visible:first").focus();
+
+        $('#accesspanel').on('submit', function(e) {
+
+            e.preventDefault();
+
+            state = !state;
+
+            if (state) {
+                document.getElementById("litheader").className = "poweron";
+                document.getElementById("go").className = "";
+                document.getElementById("go").value = "Initializing...";
+            }else{
+                document.getElementById("litheader").className = "";
+                document.getElementById("go").className = "denied";
+                document.getElementById("go").value = "Access Denied";
+            }
+
+        });
+
+    });
+</script>
+
+<!--<script>-->
+<!--    $('#password').focusin(function(){-->
+<!--        $('form').addClass('up')-->
+<!--    });-->
+<!--    $('#password').focusout(function(){-->
+<!--        $('form').removeClass('up')-->
+<!--    });-->
+
+<!--    // Panda Eye move-->
+<!--    $(document).on( "mousemove", function( event ) {-->
+<!--        var dw = $(document).width() / 15;-->
+<!--        var dh = $(document).height() / 15;-->
+<!--        var x = event.pageX/ dw;-->
+<!--        var y = event.pageY/ dh;-->
+<!--        $('.eye-ball').css({-->
+<!--            width : x,-->
+<!--            height : y-->
+<!--        });-->
+<!--    });-->
+
+<!--    // validation-->
+
+
+<!--    $('.btn').click(function(){-->
+<!--        $('form').addClass('wrong-entry');-->
+<!--        setTimeout(function(){-->
+<!--            $('form').removeClass('wrong-entry');-->
+<!--        },3000 );-->
+<!--    });-->
+<!--</script>-->
+</html>

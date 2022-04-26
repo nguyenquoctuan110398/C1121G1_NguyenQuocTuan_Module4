@@ -17,14 +17,19 @@ public interface ICustomerUsingServiceRepository extends JpaRepository<CustomerU
 //            "join Services s on co.services.serviceId = s.serviceId " +
 //            "left join ContractDetail cd on co.contractId = cd.contract.contractId " +
 //            "left join AttachService ats on cd.attachService.attachServiceId = ats.attachServiceId")
-    @Query(value = "select concat(customer.customer_id, contract.contract_id, services.service_id, ifnull(attach_service.attach_service_id,0)) as id, \n" +
-            "\tcustomer.customer_code, customer.customer_name, contract.contract_id, services.service_name, \n" +
-            "attach_service.attach_service_name, contract_detail.quantity \n" +
+    @Query(value = "select concat(customer.customer_id, contract.contract_id, services.service_id, \n" +
+            "ifnull(attach_service.attach_service_id,0)) as id, \n" +
+            "customer.customer_code, customer.customer_name, contract.contract_id, \n" +
+            "services.service_name, \n" +
+            "attach_service.attach_service_name, services.service_cost, \n" +
+            "contract.contract_deposit, attach_service.attach_service_cost, contract_detail.quantity, \n" +
+            "(services.service_cost + ifnull(contract_detail.quantity, 0) * ifnull(attach_service.attach_service_cost, 0) - contract.contract_deposit) as total_money\n" +
             "from customer \n" +
             "join contract on customer.customer_id = contract.customer_id \n" +
             "join services on contract.service_id = services.service_id \n" +
             "left join contract_detail on contract.contract_id = contract_detail.contract_id \n" +
-            "left join attach_service on contract_detail.attach_service_id = attach_service.attach_service_id", nativeQuery = true)
+            "left join attach_service on contract_detail.attach_service_id = attach_service.attach_service_id;",
+            nativeQuery = true)
     List<CustomerUsingService> findAll();
 //    Page<CustomerUsingService> findAll(Pageable pageable);
 }

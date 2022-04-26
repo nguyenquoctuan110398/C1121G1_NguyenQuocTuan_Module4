@@ -22,8 +22,16 @@ public class CustomerUsingService {
     private String serviceName;
     @Column(name = "attach_service_name")
     private String attachServiceName;
+    @Column(name = "service_cost")
+    private Double serviceCost;
+    @Column(name = "contract_deposit")
+    private Double contractDeposit;
+    @Column(name = "attach_service_cost")
+    private Double attachServiceCost;
     @Column(name = "quantity")
     private Integer quantity;
+    @Column(name = "total_money")
+    private Double totalMoney;
 
     public CustomerUsingService() {
     }
@@ -76,11 +84,43 @@ public class CustomerUsingService {
         this.attachServiceName = attachServiceName;
     }
 
+    public Double getServiceCost() {
+        return serviceCost;
+    }
+
+    public void setServiceCost(Double serviceCost) {
+        this.serviceCost = serviceCost;
+    }
+
+    public Double getContractDeposit() {
+        return contractDeposit;
+    }
+
+    public void setContractDeposit(Double contractDeposit) {
+        this.contractDeposit = contractDeposit;
+    }
+
+    public Double getAttachServiceCost() {
+        return attachServiceCost;
+    }
+
+    public void setAttachServiceCost(Double attachServiceCost) {
+        this.attachServiceCost = attachServiceCost;
+    }
+
     public Integer getQuantity() {
         return quantity;
     }
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public Double getTotalMoney() {
+        return totalMoney;
+    }
+
+    public void setTotalMoney(Double totalMoney) {
+        this.totalMoney = totalMoney;
     }
 }
